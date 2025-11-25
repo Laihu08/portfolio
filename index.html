@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rahul Selvaraj | AI Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================
+       THEME PRESETS (UNCOMMENT ONE :root BLOCK)
+       ========================================= */
+
+    /* Blue Professional (DEFAULT ACTIVE) */
+    :root {
+      --bg: #f4f6f9;
+      --bg-alt: #ffffff;
+      --text-main: #1a1a1a;
+      --text-muted: #4b5563;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+      --hero-gradient: linear-gradient(135deg, #eef5ff 0%, #f8fbff 100%);
+      --accent: #0066c8;
+      --accent-soft: rgba(0, 102, 200, 0.12);
+      --accent-contrast: #ffffff;
+      --header-bg: rgba(255, 255, 255, 0.92);
+      --footer-bg: #ffffff;
+      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    /* Purple AI Startup */
+/*
+    :root {
+      --bg: #f4f3ff;
+      --bg-alt: #ffffff;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+      --hero-gradient: linear-gradient(135deg, #ece9ff 0%, #f5f3ff 100%);
+      --accent: #5b4ee5;
+      --accent-soft: rgba(91, 78, 229, 0.14);
+      --accent-contrast: #ffffff;
+      --header-bg: rgba(255, 255, 255, 0.95);
+      --footer-bg: #ffffff;
+      --shadow-soft: 0 10px 26px rgba(88, 28, 135, 0.12);
+    }
+*/
+
+    /* Teal Minimal */
+/*
+    :root {
+      --bg: #f3fbfb;
+      --bg-alt: #ffffff;
+      --text-main: #102a43;
+      --text-muted: #4b5563;
+      --card-bg: #ffffff;
+      --border: #d1e3e8;
+      --hero-gradient: linear-gradient(135deg, #e5f7f6 0%, #f5f7fa 100%);
+      --accent: #0b9a8b;
+      --accent-soft: rgba(11, 154, 139, 0.14);
+      --accent-contrast: #ffffff;
+      --header-bg: rgba(255, 255, 255, 0.95);
+      --footer-bg: #f8fafc;
+      --shadow-soft: 0 10px 24px rgba(15, 118, 110, 0.12);
+    }
+*/
+
+    /* Warm Neutral */
+/*
+    :root {
+      --bg: #faf6f1;
+      --bg-alt: #ffffff;
+      --text-main: #1f2933;
+      --text-muted: #4b5563;
+      --card-bg: #ffffff;
+      --border: #e5ded1;
+      --hero-gradient: linear-gradient(135deg, #fdf4e3 0%, #fef9f4 100%);
+      --accent: #d97706;
+      --accent-soft: rgba(217, 119, 6, 0.12);
+      --accent-contrast: #ffffff;
+      --header-bg: rgba(255, 255, 255, 0.96);
+      --footer-bg: #fef9f4;
+      --shadow-soft: 0 10px 24px rgba(146, 64, 14, 0.12);
+    }
+*/
+
+    /* Neutral Gray Tech */
+/*
+    :root {
+      --bg: #f3f4f6;
+      --bg-alt: #ffffff;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+      --hero-gradient: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.12);
+      --accent-contrast: #ffffff;
+      --header-bg: rgba(249, 250, 251, 0.96);
+      --footer-bg: #f9fafb;
+      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+*/
+
+    /* Dark theme overrides (used when data-theme="dark") */
+    :root[data-theme="dark"] {
+      --bg: #0f1117;
+      --bg-alt: #111827;
+      --text-main: #e7e9ee;
+      --text-muted: #9ca3af;
+      --card-bg: #111827;
+      --border: #1f2933;
+      --hero-gradient: linear-gradient(135deg, #020617 0%, #111827 100%);
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.25);
+      --accent-contrast: #f9fafb;
+      --header-bg: rgba(15, 23, 42, 0.96);
+      --footer-bg: #020617;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.85);
+    }
+
+    /* ============ BASE STYLES ============ */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      font-size: 18px;
+      line-height: 1.75;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    header {
+      background: var(--header-bg);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 700;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      padding: 12px 0;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--text-main);
+      border-color: var(--accent-soft);
+      background: var(--accent-soft);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 90%;
+    }
+
+    /* ============ HERO ============ */
+
+    .hero {
+      background: var(--hero-gradient);
+      padding: 130px 0 110px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-wrapper {
+      max-width: 900px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .profile-pic {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #ffffff;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      animation: float 4s ease-in-out infinite;
+      margin-bottom: 24px;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      margin: 0;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-top: 12px;
+      max-width: 640px;
+      color: var(--text-muted);
+    }
+
+    .hero-links {
+      margin-top: 26px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-links a {
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.05rem;
+      color: var(--accent-contrast);
+      background: var(--accent);
+      transition: 0.25s ease;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.2);
+    }
+
+    .hero-links a.secondary-btn {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      box-shadow: none;
+    }
+
+    .hero-links a:hover {
+      filter: brightness(0.95);
+      transform: translateY(-1px);
+    }
+
+    .hero-email {
+      margin-top: 18px;
+      font-size: 0.98rem;
+      color: var(--text-muted);
+    }
+
+    .hero-email a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dashed transparent;
+      transition: 0.2s ease;
+    }
+
+    .hero-email a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    /* ============ SECTIONS ============ */
+
+    section {
+      padding: 120px 0;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section.alt {
+      background: var(--bg-alt);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 50px;
+      color: var(--text-main);
+    }
+
+    /* ============ CARDS & GRIDS ============ */
+
+    .grid-2,
+    .projects-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 32px;
+      border-radius: 16px;
+      font-size: 1.05rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.12);
+      border-color: var(--accent-soft);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+      color: var(--text-main);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    /* ============ EXPERIENCE ============ */
+
+    .experience-item {
+      padding: 24px 24px 22px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 18px;
+    }
+
+    .experience-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1rem;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .experience-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--text-main);
+    }
+
+    .company {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .date {
+      margin-left: auto;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .experience-item ul {
+      margin: 0.5rem 0 0 1.1rem;
+      padding: 0;
+      font-size: 0.98rem;
+      color: var(--text-main);
+    }
+
+    .experience-item li + li {
+      margin-top: 0.25rem;
+    }
+
+    /* ============ FOOTER ============ */
+
+    footer {
+      text-align: center;
+      padding: 40px 0 50px;
+      color: var(--text-muted);
+      background: var(--footer-bg);
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    /* ============ THEME TOGGLE BUTTON ============ */
+
+    .toggle-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      cursor: pointer;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+      transition: 0.2s ease;
+      z-index: 1500;
+    }
+
+    .toggle-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.97);
+    }
+
+    /* ============ RESPONSIVE ============ */
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 110px 0 90px;
+      }
+
+      .hero-text h1 {
+        font-size: 2.4rem;
+      }
+
+      .profile-pic {
+        width: 150px;
+        height: 150px;
+      }
+
+      .hero-text p {
+        font-size: 1.05rem;
+      }
+
+      section {
+        padding: 90px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#achievements">Achievements</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-wrapper">
+      <img src="https://avatars.githubusercontent.com/u/55731288?v=4" class="profile-pic" alt="Rahul profile">
+
+      <div class="hero-text">
+        <h1>Rahul Selvaraj</h1>
+        <p>
+          AI Engineer specializing in agentic automation, multimodal intelligence, and assistive technology innovation.
+          Based in New Taipei City, Taiwan.
+        </p>
+      </div>
+
+      <div class="hero-links">
+        <a href="https://linkedin.com/in/rahul-selvaraj" target="_blank">LinkedIn</a>
+        <a href="https://github.com/Laihu08" target="_blank" class="secondary-btn">GitHub</a>
+      </div>
+
+      <p class="hero-email">
+        Email:
+        <a href="mailto:srahul.india1998@gmail.com">srahul.india1998@gmail.com</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="reveal">
+    <div class="container" style="max-width: 850px;">
+      <h2>About</h2>
+      <p style="font-size:1.15rem; line-height:1.9; text-align:center; color:var(--text-muted);">
+        AI Engineer with expertise in AI automations, multimodal fusion, real-time intelligent systems, and assistive
+        technologies. Bringing 4+ years of experience across medical and manufacturing industries, delivering impactful
+        innovation through APIs, VLMs, LLMs, embedded AI, real-time sensor fusion, and patented product development.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="reveal alt">
+    <div class="container">
+      <h2>Skills</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Programming</h3>
+          <p>Python, Dart, Swift, C++</p>
+        </div>
+        <div class="card">
+          <h3>AI & Frameworks</h3>
+          <p>PyTorch, TensorFlow, HuggingFace, Whisper.cpp, Agents, LLaMA tooling</p>
+        </div>
+        <div class="card">
+          <h3>Backend</h3>
+          <p>FastAPI, Node.js, n8n, LangChain, Antigravity</p>
+        </div>
+        <div class="card">
+          <h3>Tools</h3>
+          <p>Docker, Git, Raspberry Pi, Arduino, ROS</p>
+        </div>
+        <div class="card">
+          <h3>Domains</h3>
+          <p>Agentic AI, NLP, Computer Vision, Embedded Systems</p>
+        </div>
+        <div class="card">
+          <h3>Soft Skills</h3>
+          <p>Problem-solving, Adaptability, Technical Communication</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="reveal">
+    <div class="container">
+      <h2>Experience</h2>
+
+      <div class="experience-item">
+        <div class="experience-header">
+          <h3>AI Engineer</h3>
+          <span class="company">Bizlink, Taiwan</span>
+          <span class="date">2025 – Present</span>
+        </div>
+        <ul>
+          <li>Building AI platforms with multimodal models for production use cases.</li>
+          <li>Developing RAG pipelines and agent ecosystems for internal and client workflows.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <div class="experience-header">
+          <h3>Senior Software Engineer</h3>
+          <span class="company">Karma Medical Products Ltd, Taiwan</span>
+          <span class="date">2021 – 2025</span>
+        </div>
+        <ul>
+          <li>Co-invented patents for AI-enabled assistive devices and smart wheelchairs.</li>
+          <li>Developed Flutter and Swift applications for sensor-driven systems.</li>
+          <li>Implemented LiDAR, Bluetooth, and CAN protocol integrations.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <div class="experience-header">
+          <h3>AI Consultant & Researcher</h3>
+          <span class="company">Freelance / Independent</span>
+          <span class="date">2023 – Present</span>
+        </div>
+        <ul>
+          <li>Designed automation workflows using agentic AI frameworks.</li>
+          <li>Built multi-agent orchestration pipelines for complex operations.</li>
+          <li>Researched real-time AI-driven automation patterns and reliability.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="reveal alt">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="card">
+          <h3>Multi-Agent System</h3>
+          <p>Automation platform built using n8n, GPT, LLaMA2 and RAG for orchestrated workflows.</p>
+        </div>
+        <div class="card">
+          <h3>iSeat Posture App</h3>
+          <p>Real-time posture and pressure analytics for assistive seating using mobile and embedded sensors.</p>
+        </div>
+        <div class="card">
+          <h3>Depth Completion</h3>
+          <p>LiDAR–RGB fusion for dense 3D scene understanding and obstacle detection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="reveal">
+    <div class="container">
+      <h2>Education</h2>
+      <div class="projects-grid">
+        <div class="card">
+          <h3>M.Sc. Electrical Engineering</h3>
+          <p>Machine Learning — National Chung Cheng University (CCU), Taiwan</p>
+        </div>
+        <div class="card">
+          <h3>B.Tech Electronics</h3>
+          <p>SRM Institute of Science and Technology, India</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="reveal alt">
+    <div class="container">
+      <h2>Certifications</h2>
+      <div class="projects-grid">
+        <div class="card">
+          <h3>NVIDIA — AI for All</h3>
+          <p>GenAI, transformer models, and NVIDIA AI workflows.</p>
+        </div>
+        <div class="card">
+          <h3>LangChain — LLM App Development</h3>
+          <p>Prompting, agents, and LLM pipeline design.</p>
+        </div>
+        <div class="card">
+          <h3>Google — Vertex AI Skill Badge</h3>
+          <p>Cloud GenAI, model deployment, and Vertex pipelines.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements" class="reveal">
+    <div class="container">
+      <h2>Achievements</h2>
+      <div class="projects-grid">
+        <div class="card">
+          <p>Co-inventor of two international patents in assistive technologies.</p>
+        </div>
+        <div class="card">
+          <p>Recipient of Taiwan Excellence Award 2025.</p>
+        </div>
+        <div class="card">
+          <p>Improved customization efficiency by 65% through automation and tooling.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> Rahul Selvaraj</p>
+  </footer>
+
+  <button class="toggle-btn" id="theme-toggle" type="button">Switch to dark theme</button>
+
+  <script>
+    // Set current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Reveal sections on scroll
+    const sections = document.querySelectorAll("section");
+    const onScroll = () => {
+      const trigger = window.innerHeight * 0.85;
+      sections.forEach(sec => {
+        if (sec.getBoundingClientRect().top < trigger) {
+          sec.classList.add("show");
+        }
+      });
+    };
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+
+    // Theme handling: system preference + toggle override
+    const root = document.documentElement;
+    const toggleBtn = document.getElementById("theme-toggle");
+
+    function applyTheme(theme, save = true) {
+      root.setAttribute("data-theme", theme);
+      if (save) {
+        localStorage.setItem("theme", theme);
+      }
+      toggleBtn.textContent = theme === "dark"
+        ? "Switch to light theme"
+        : "Switch to dark theme";
+    }
+
+    // Init theme
+    (function initTheme() {
+      const stored = localStorage.getItem("theme");
+      if (stored === "light" || stored === "dark") {
+        applyTheme(stored, false);
+      } else {
+        const prefersDark = window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        applyTheme(prefersDark ? "dark" : "light", false);
+      }
+
+      // Watch system preference if no manual setting yet
+      if (window.matchMedia) {
+        const mq = window.matchMedia("(prefers-color-scheme: dark)");
+        mq.addEventListener("change", e => {
+          const storedTheme = localStorage.getItem("theme");
+          if (!storedTheme) {
+            applyTheme(e.matches ? "dark" : "light", false);
+          }
+        });
+      }
+    })();
+
+    toggleBtn.addEventListener("click", () => {
+      const current = root.getAttribute("data-theme") || "light";
+      applyTheme(current === "dark" ? "light" : "dark");
+    });
+  </script>
+</body>
+</html>
