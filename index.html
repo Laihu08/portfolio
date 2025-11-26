@@ -448,6 +448,68 @@
         padding: 90px 0;
       }
     }
+
+    .cert-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cert-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .cert-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    line-height: 1.3;
+    flex: 1;
+  }
+
+  .cert-card {
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-self: start;
+  }
+
+  .cert-content {
+    margin-top: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  }
+
+  .cert-card.open .cert-content {
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 16px;
+  }
+
+  .cert-content ul {
+    padding-left: 20px;
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .cert-content li {
+    margin-bottom: 4px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   </style>
 </head>
 
@@ -471,9 +533,8 @@
 
       <div class="hero-text">
         <h1>Rahul Selvaraj</h1>
-        <p>
-          AI Engineer specializing in agentic automation, multimodal intelligence, and assistive technology innovation.
-          Based in New Taipei City, Taiwan.
+        <p>AI Engineer specializing in agentic automation, multimodal intelligence, and assistive technology innovation.</p>
+        <p>Based in New Taipei City, Taiwan.
         </p>
       </div>
 
@@ -606,37 +667,130 @@
       <h2>Education</h2>
       <div class="projects-grid">
         <div class="card">
-          <h3>M.Sc. Electrical Engineering</h3>
-          <p>Machine Learning — National Chung Cheng University (CCU), Taiwan</p>
+          <div class="cert-header">
+            <img src="ccu.png" class="cert-logo" alt="CCU Logo" />
+            <h3>M.Sc. Electrical Engineering</h3>
+          </div>
+          <p style="margin-top: 8px;">Machine Learning — National Chung Cheng University (CCU), Taiwan</p>
         </div>
         <div class="card">
-          <h3>B.Tech Electronics</h3>
-          <p>SRM Institute of Science and Technology, India</p>
+          <div class="cert-header">
+            <img src="srm_logo.png" class="cert-logo" alt="SRM Logo" />
+            <h3>B.Tech Electronics</h3>
+          </div>
+          <p style="margin-top: 8px;">SRM Institute of Science and Technology, India</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CERTIFICATIONS -->
-  <section id="certifications" class="reveal alt">
-    <div class="container">
-      <h2>Certifications</h2>
-      <div class="projects-grid">
-        <div class="card">
-          <h3>NVIDIA — AI for All</h3>
-          <p>GenAI, transformer models, and NVIDIA AI workflows.</p>
+<section id="certifications" class="reveal alt">
+  <div class="container">
+    <h2>Certifications</h2>
+
+    <div class="projects-grid">
+
+      <!-- DIGITAL WORKFORCE -->
+      <div class="card cert-card" onclick="toggleCert(this)">
+        <div class="cert-header">
+          <img src="digitalworkforceservices_logo.jpeg" class="cert-logo" />
+          <h3>Digital Workforce Services Plc</h3>
         </div>
-        <div class="card">
-          <h3>LangChain — LLM App Development</h3>
-          <p>Prompting, agents, and LLM pipeline design.</p>
-        </div>
-        <div class="card">
-          <h3>Google — Vertex AI Skill Badge</h3>
-          <p>Cloud GenAI, model deployment, and Vertex pipelines.</p>
+        <div class="cert-content">
+          <ul>
+            <li>Understanding Agentic AI</li>
+          </ul>
         </div>
       </div>
+
+      <!-- DATABRICKS -->
+      <div class="card cert-card" onclick="toggleCert(this)">
+        <div class="cert-header">
+          <img src="Data_bricks.jpeg" class="cert-logo" />
+          <h3>Databricks</h3>
+        </div>
+        <div class="cert-content">
+          <ul>
+            <li>Academy Accreditation – Generative AI Fundamentals</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- MICROSOFT -->
+      <div class="card cert-card" onclick="toggleCert(this)">
+        <div class="cert-header">
+          <img src="microsoft_logo.jpeg" class="cert-logo" />
+          <h3>Microsoft </h3>
+        </div>
+        <div class="cert-content">
+          <ul>
+            <li>Develop a RAG-based Solution </li>
+            <li>Develop an AI App with Azure AI Foundry SDK </li>
+            <li>Evaluate Generative AI Performance </li>
+            <li>Fine-Tune a Language Model</li>
+            <li>Plan and Prepare to Develop AI Solutions </li>
+            <li>Choose and Deploy Models from the Model Catalog </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- UDEMY -->
+      <div class="card cert-card" onclick="toggleCert(this)">
+        <div class="cert-header">
+          <img src="udemy_logo.jpeg" class="cert-logo" />
+          <h3>Udemy</h3>
+        </div>
+        <div class="cert-content">
+          <ul>
+            <li>Master AI, Large Language Models & Agents</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- NVIDIA -->
+      <div class="card cert-card" onclick="toggleCert(this)">
+        <div class="cert-header">
+          <img src="https://upload.wikimedia.org/wikipedia/sco/2/21/Nvidia_logo.svg" class="cert-logo" />
+          <h3>NVIDIA</h3>
+        </div>
+        <div class="cert-content">
+          <ul>
+            <li>AI for All: From Basics to GenAI Practice </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DEEPLEARNING.AI -->
+      <div class="card cert-card" onclick="toggleCert(this)">
+        <div class="cert-header">
+          <img src="deeplearningai_logo.jpeg" class="cert-logo" />
+          <h3>DeepLearning.AI</h3>
+        </div>
+        <div class="cert-content">
+          <ul>
+            <li>LangChain for LLM Application Development</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- GOOGLE CLOUD -->
+      <div class="card cert-card" onclick="toggleCert(this)">
+        <div class="cert-header">
+          <img src="google_logo.jpeg" class="cert-logo" />
+          <h3>Google Cloud</h3>
+        </div>
+        <div class="cert-content">
+          <ul>
+            <li>Prompt Design in Vertex AI </li>
+          </ul>
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- ACHIEVEMENTS -->
   <section id="achievements" class="reveal">
@@ -720,6 +874,11 @@
       const current = root.getAttribute("data-theme") || "light";
       applyTheme(current === "dark" ? "light" : "dark");
     });
+
+    function toggleCert(card) {
+      card.classList.toggle("open");
+    }
+
   </script>
 </body>
 </html>
