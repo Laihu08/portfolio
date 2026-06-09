@@ -1,18 +1,19 @@
 :root {
   --bg: #edf3f8;
   --paper: #fbfdff;
-  --paper-strong: #e4edf5;
-  --surface: rgba(255, 255, 255, 0.76);
-  --surface-strong: rgba(255, 255, 255, 0.92);
-  --ink: #162133;
-  --muted: #607086;
-  --line: rgba(22, 33, 51, 0.12);
-  --line-strong: rgba(22, 33, 51, 0.2);
-  --accent: #235f8d;
-  --accent-soft: rgba(35, 95, 141, 0.12);
-  --accent-warm: #2f8b7a;
-  --shadow-soft: 0 22px 60px rgba(22, 33, 51, 0.1);
-  --shadow-strong: 0 30px 90px rgba(22, 33, 51, 0.16);
+  --paper-strong: #e5eef6;
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-strong: rgba(255, 255, 255, 0.9);
+  --ink: #162033;
+  --muted: #5e6f83;
+  --line: rgba(22, 32, 51, 0.11);
+  --line-strong: rgba(22, 32, 51, 0.18);
+  --accent: #1f5d88;
+  --accent-soft: rgba(31, 93, 136, 0.12);
+  --accent-warm: #2d8677;
+  --accent-metal: #b78a5a;
+  --shadow-soft: 0 24px 64px rgba(19, 33, 53, 0.1);
+  --shadow-strong: 0 34px 100px rgba(19, 33, 53, 0.15);
   --radius-sm: 18px;
   --radius-md: 28px;
   --radius-lg: 40px;
@@ -37,9 +38,9 @@ body {
   font-family: "Manrope", "Segoe UI", sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at top left, rgba(47, 139, 122, 0.14), transparent 24%),
-    radial-gradient(circle at top right, rgba(35, 95, 141, 0.16), transparent 28%),
-    linear-gradient(180deg, #f8fbff 0%, var(--bg) 46%, #e8f0f6 100%);
+    radial-gradient(circle at 12% 8%, rgba(31, 93, 136, 0.14), transparent 18%),
+    radial-gradient(circle at 84% 12%, rgba(45, 134, 119, 0.12), transparent 20%),
+    linear-gradient(180deg, #f9fbfd 0%, var(--bg) 42%, #e8f0f6 100%);
   line-height: 1.65;
 }
 
@@ -99,19 +100,21 @@ button {
 }
 
 .page-shell::before {
-  top: 6rem;
-  left: -10rem;
-  width: 24rem;
-  height: 24rem;
-  background: rgba(47, 139, 122, 0.08);
+  top: -2rem;
+  left: -8rem;
+  width: 28rem;
+  height: 28rem;
+  background: radial-gradient(circle, rgba(31, 93, 136, 0.16), transparent 62%);
+  animation: ambientDrift 26s ease-in-out infinite;
 }
 
 .page-shell::after {
-  right: -8rem;
-  bottom: 10rem;
-  width: 22rem;
-  height: 22rem;
-  background: rgba(35, 95, 141, 0.08);
+  right: -6rem;
+  bottom: 4rem;
+  width: 24rem;
+  height: 24rem;
+  background: radial-gradient(circle, rgba(45, 134, 119, 0.14), transparent 64%);
+  animation: ambientDrift 32s ease-in-out infinite reverse;
 }
 
 .site-header {
@@ -212,6 +215,111 @@ button {
 
 .hero {
   padding: 5.5rem 0 3rem;
+}
+
+.hero,
+.section {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  --field-a: rgba(31, 93, 136, 0.1);
+  --field-b: rgba(45, 134, 119, 0.08);
+  --field-grid: rgba(22, 32, 51, 0.04);
+  --field-orb-x: 18%;
+  --field-orb-y: 18%;
+}
+
+.hero::before,
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at var(--field-orb-x) var(--field-orb-y), var(--field-a), transparent 28%),
+    radial-gradient(circle at 82% 24%, var(--field-b), transparent 24%);
+  opacity: 0.95;
+  transform: translate3d(0, 0, 0);
+  animation: sectionFieldFloat 22s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.hero::after,
+.section::after {
+  content: "";
+  position: absolute;
+  inset: 8% 2%;
+  border-radius: 2.5rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0)),
+    repeating-linear-gradient(90deg, transparent 0 58px, var(--field-grid) 58px 59px),
+    repeating-linear-gradient(180deg, transparent 0 58px, var(--field-grid) 58px 59px);
+  opacity: 0.48;
+  transform: translate3d(0, 0, 0);
+  animation: gridDrift 32s linear infinite;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.hero > .container,
+.section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero {
+  --field-a: rgba(31, 93, 136, 0.16);
+  --field-b: rgba(183, 138, 90, 0.08);
+  --field-grid: rgba(22, 32, 51, 0.05);
+  --field-orb-x: 12%;
+  --field-orb-y: 14%;
+}
+
+#about {
+  --field-a: rgba(31, 93, 136, 0.12);
+  --field-b: rgba(45, 134, 119, 0.06);
+}
+
+#skills {
+  --field-a: rgba(183, 138, 90, 0.08);
+  --field-b: rgba(31, 93, 136, 0.08);
+  --field-orb-x: 84%;
+  --field-orb-y: 20%;
+}
+
+#experience {
+  --field-a: rgba(45, 134, 119, 0.08);
+  --field-b: rgba(31, 93, 136, 0.08);
+  --field-orb-x: 20%;
+  --field-orb-y: 78%;
+}
+
+#projects {
+  --field-a: rgba(31, 93, 136, 0.11);
+  --field-b: rgba(45, 134, 119, 0.08);
+  --field-orb-x: 78%;
+  --field-orb-y: 22%;
+}
+
+#education {
+  --field-a: rgba(45, 134, 119, 0.08);
+  --field-b: rgba(183, 138, 90, 0.08);
+  --field-orb-x: 18%;
+  --field-orb-y: 28%;
+}
+
+#certifications {
+  --field-a: rgba(31, 93, 136, 0.12);
+  --field-b: rgba(183, 138, 90, 0.06);
+  --field-orb-x: 24%;
+  --field-orb-y: 16%;
+}
+
+#achievements {
+  --field-a: rgba(183, 138, 90, 0.08);
+  --field-b: rgba(45, 134, 119, 0.08);
+  --field-orb-x: 82%;
+  --field-orb-y: 18%;
 }
 
 .hero-grid {
@@ -321,7 +429,7 @@ button {
 
 .hero-actions .ghost {
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.58);
   border-color: rgba(35, 95, 141, 0.16);
 }
 
@@ -379,7 +487,7 @@ button {
 .accordion-card,
 .achievement-card {
   background: var(--surface);
-  border: 1px solid rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.72);
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(12px);
 }
@@ -397,16 +505,16 @@ button {
 .portrait-card {
   position: relative;
   overflow: hidden;
-  padding: 1.15rem;
+  padding: 1.2rem;
 }
 
 .portrait-card::after {
   content: "";
   position: absolute;
-  inset: auto -20% 0 auto;
-  width: 18rem;
-  height: 18rem;
-  background: radial-gradient(circle, rgba(35, 95, 141, 0.18), transparent 65%);
+  inset: auto -18% -12% auto;
+  width: 19rem;
+  height: 19rem;
+  background: radial-gradient(circle, rgba(31, 93, 136, 0.18), transparent 65%);
   pointer-events: none;
 }
 
@@ -416,7 +524,7 @@ button {
   object-fit: cover;
   border-radius: calc(var(--radius-lg) - 0.65rem);
   box-shadow: var(--shadow-strong);
-  animation: portraitFloat 7s ease-in-out infinite;
+  animation: portraitFloat 9s ease-in-out infinite;
 }
 
 .portrait-caption {
@@ -445,7 +553,7 @@ button {
   background:
     linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.72) 40%, transparent 80%);
   transform: translateX(-140%);
-  animation: sweep 8s linear infinite;
+  animation: sweep 12s linear infinite;
   pointer-events: none;
 }
 
@@ -485,7 +593,7 @@ button {
 }
 
 .section {
-  padding: 3rem 0;
+  padding: 3.4rem 0;
 }
 
 .section-alt {
@@ -499,8 +607,9 @@ button {
   width: min(1240px, calc(100vw - 1.25rem));
   transform: translateX(-50%);
   border-radius: 3rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.42));
-  border: 1px solid rgba(255, 255, 255, 0.78);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.32));
+  border: 1px solid rgba(255, 255, 255, 0.84);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
   z-index: -1;
 }
 
@@ -515,7 +624,7 @@ button {
 }
 
 .section-heading h2 {
-  font-size: clamp(2.1rem, 4.1vw, 3.35rem);
+  font-size: clamp(2.05rem, 4vw, 3.2rem);
   max-width: 24ch;
 }
 
@@ -570,6 +679,23 @@ button {
 
 .bento-card.large {
   grid-column: span 6;
+}
+
+.bento-card,
+.timeline-item,
+.project-card,
+.repo-card,
+.education-card,
+.accordion-card,
+.achievement-card,
+.quote-card,
+.signal-card,
+.portrait-card {
+  transition:
+    transform 280ms var(--ease),
+    box-shadow 280ms var(--ease),
+    border-color 280ms var(--ease),
+    background-color 280ms var(--ease);
 }
 
 .bento-card h3,
@@ -667,8 +793,9 @@ button {
   gap: 0.4rem;
   padding: 0.35rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.84);
+  background: rgba(255, 255, 255, 0.88);
   border: 1px solid rgba(24, 33, 43, 0.08);
+  box-shadow: 0 12px 28px rgba(22, 32, 51, 0.08);
 }
 
 .tab-button {
@@ -686,7 +813,7 @@ button {
 }
 
 .tab-button.is-active {
-  background: linear-gradient(135deg, var(--accent), #183b5b);
+  background: linear-gradient(135deg, #214f73, #17324d);
   color: #fff;
   box-shadow: 0 10px 24px rgba(22, 33, 51, 0.16);
 }
@@ -723,7 +850,7 @@ button {
 }
 
 .project-card.featured {
-  background: linear-gradient(160deg, rgba(35, 95, 141, 0.14), rgba(255, 255, 255, 0.94) 52%);
+  background: linear-gradient(160deg, rgba(31, 93, 136, 0.15), rgba(255, 255, 255, 0.95) 52%);
 }
 
 .project-card a,
@@ -750,7 +877,7 @@ button {
 .tag-list li {
   padding: 0.38rem 0.7rem;
   border-radius: 999px;
-  background: rgba(24, 33, 43, 0.06);
+  background: rgba(22, 32, 51, 0.05);
   color: var(--ink);
   font-size: 0.8rem;
 }
@@ -924,6 +1051,19 @@ button {
   height: 68px;
 }
 
+.bento-card:hover,
+.timeline-item:hover,
+.project-card:hover,
+.repo-card:hover,
+.education-card:hover,
+.accordion-card:hover,
+.achievement-card:hover,
+.quote-card:hover,
+.signal-card:hover {
+  border-color: rgba(31, 93, 136, 0.18);
+  box-shadow: 0 28px 72px rgba(19, 33, 53, 0.12);
+}
+
 .site-footer {
   padding: 2rem 0 3rem;
 }
@@ -980,6 +1120,42 @@ button {
   }
 }
 
+@keyframes ambientDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(1.6rem, -1rem, 0) scale(1.06);
+  }
+}
+
+@keyframes sectionFieldFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0.8rem, -0.9rem, 0) scale(1.03);
+  }
+}
+
+@keyframes gridDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(-0.9rem, 0.7rem, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @keyframes portraitFloat {
   0%,
   100% {
@@ -1009,6 +1185,11 @@ button {
   .section-heading h2,
   .section-heading.compact h2 {
     max-width: 100%;
+  }
+
+  .hero::after,
+  .section::after {
+    inset: 8% 1.2%;
   }
 }
 
@@ -1071,13 +1252,19 @@ button {
 
 @media (max-width: 680px) {
   .section {
-    padding: 2.4rem 0;
+    padding: 2.6rem 0;
   }
 
   .section-alt::before {
     inset: 0.6rem auto 0.6rem 50%;
     width: min(1240px, calc(100vw - 0.8rem));
     border-radius: 2rem;
+  }
+
+  .hero::after,
+  .section::after {
+    inset: 6% 1%;
+    opacity: 0.28;
   }
 
   .hero {
