@@ -1,8 +1,19 @@
 const yearNode = document.getElementById("year");
+const root = document.documentElement;
 
 if (yearNode) {
   yearNode.textContent = new Date().getFullYear();
 }
+
+const updateScrollProgress = () => {
+  const maxScroll = root.scrollHeight - window.innerHeight;
+  const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+  root.style.setProperty("--scroll-progress", String(progress));
+};
+
+updateScrollProgress();
+window.addEventListener("scroll", updateScrollProgress, { passive: true });
+window.addEventListener("resize", updateScrollProgress);
 
 const reveals = document.querySelectorAll(".reveal");
 
