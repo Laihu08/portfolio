@@ -118,11 +118,13 @@ export function Experience() {
             const isReached = i < reached;
             const isCurrent = i === reached - 1;
             const workIndex = TIMELINE.slice(0, i + 1).filter(
-              (e) => !e.education,
+              (e) => !e.education && !e.bonus,
             ).length;
             const label = entry.education
               ? "ED"
-              : String(workIndex).padStart(2, "0");
+              : entry.bonus
+                ? "+"
+                : String(workIndex).padStart(2, "0");
             return (
               <Reveal key={entry.title + entry.company} delay={i * 60}>
                 <div className="relative">
@@ -144,7 +146,7 @@ export function Experience() {
                   </span>
                   <div className="mb-4 flex items-baseline justify-between gap-4 font-mono text-sm text-[var(--faint)]">
                     <span>
-                      {entry.start} — {entry.end}
+                      {entry.bonus ? "Bonus" : `${entry.start} — ${entry.end}`}
                     </span>
                     <span className="text-right">{entry.location}</span>
                   </div>

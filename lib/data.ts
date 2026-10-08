@@ -4,7 +4,7 @@
 
 export const PROFILE = {
   name: 'Rahul Selvaraj',
-  role: 'Senior AI Software Engineer',
+  role: 'Senior AI Engineer',
   roleSub: 'Agentic AI, Full-Stack AI Systems & Cloud',
   location: 'Taiwan',
   email: 'srahul.pk98@gmail.com',
@@ -112,6 +112,7 @@ export interface ExperienceEntry {
   url?: string
   logo?: string
   education?: boolean
+  bonus?: boolean // dateless extra stop, shown as "Bonus"
 }
 
 export const EXPERIENCE: ExperienceEntry[] = [
@@ -148,11 +149,12 @@ export const EXPERIENCE: ExperienceEntry[] = [
     ],
   },
   {
-    title: 'Open-Source Contributor & AI Researcher',
+    title: 'Open Source Contributor',
     company: 'Remote',
     location: 'Remote',
-    start: 'Jan 2023',
-    end: 'Present',
+    start: '',
+    end: '',
+    bonus: true,
     bullets: [
       'Contributed to open-source LLM and RAG frameworks for agentic, real-time AI.',
       'Building a real-time audio translator for macOS and Windows with Whisper.cpp.',

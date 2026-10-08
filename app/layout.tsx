@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Montserrat, JetBrains_Mono, Mrs_Saint_Delafield } from "next/font/google";
+import { Poppins, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { PROFILE } from "@/lib/data";
 
@@ -9,22 +9,16 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600"],
 });
 
-const montserrat = Montserrat({
+const spaceGrotesk = Space_Grotesk({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const jetBrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
-});
-
-const signature = Mrs_Saint_Delafield({
-  variable: "--font-signature",
-  subsets: ["latin"],
-  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -41,7 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${poppins.variable} ${montserrat.variable} ${jetBrainsMono.variable} ${signature.variable} h-full antialiased`}
+      className={`${poppins.variable} ${spaceGrotesk.variable} ${jetBrainsMono.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

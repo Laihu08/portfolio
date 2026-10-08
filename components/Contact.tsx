@@ -75,14 +75,13 @@ export function Footer() {
   }, [])
 
   return (
-    <footer className="px-[var(--gutter)] py-10 flex items-center justify-between font-mono text-xs text-[var(--faint)] border-t border-[var(--line)]">
+    <footer className="relative flex flex-col items-center justify-center gap-3 border-t border-[var(--line)] px-[var(--gutter)] py-10 font-mono text-xs text-[var(--faint)] md:flex-row">
       <span>
         © {year ?? ''} {PROFILE.name}
       </span>
-      <SocialLinks size={16} className="mx-auto" />
       <a
         href="#hero"
-        className="transition-opacity duration-300"
+        className="transition-opacity duration-300 md:absolute md:right-[var(--gutter)]"
         style={{ opacity: visible ? 1 : 0, pointerEvents: visible ? 'auto' : 'none' }}
       >
         Back to top ↑

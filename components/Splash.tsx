@@ -5,7 +5,7 @@ import { PROFILE } from '@/lib/data'
 
 const SEEN_KEY = 'splash-seen'
 
-// Full-screen intro: signature, role, one button. Clicking slides the whole
+// Full-screen intro: name, role, one button. Clicking slides the whole
 // screen up like a curtain, revealing the page. Skipped on repeat visits in the
 // same session.
 export function Splash() {
@@ -42,8 +42,6 @@ export function Splash() {
 
   if (phase === 'gone') return null
 
-  const [first, ...rest] = PROFILE.name.split(' ')
-
   return (
     <div
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[var(--paper)] px-[var(--gutter)] text-center"
@@ -53,18 +51,20 @@ export function Splash() {
       }}
     >
       <h1
-        className="splash-sign leading-[0.85] text-[var(--ink-2)]"
-        style={{ fontFamily: 'var(--font-signature)', fontSize: 'clamp(84px, 16vw, 200px)' }}
+        className="splash-sign font-semibold leading-[1.05] tracking-tight text-[var(--ink)]"
+        style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px, 9vw, 120px)' }}
       >
-        <span className="block">{first}</span>
-        <span className="block ml-[0.6em] -mt-[0.05em] text-[0.8em]">{rest.join(' ')}</span>
+        {PROFILE.name}
       </h1>
-      <p className="mt-10 text-lg font-light tracking-wide splash-fade" style={{ animationDelay: '1s' }}>
+      <p
+        className="mt-8 text-xl font-normal text-[var(--mute)] splash-fade md:text-2xl"
+        style={{ animationDelay: '1s' }}
+      >
         {PROFILE.role}
       </p>
       <button
         onClick={enter}
-        className="pill pill-outline mt-8 splash-fade"
+        className="pill pill-outline mt-10 splash-fade !px-8 !py-3.5 !text-base !font-medium"
         style={{ animationDelay: '1.3s', borderColor: 'var(--ink)' }}
         autoFocus
       >
