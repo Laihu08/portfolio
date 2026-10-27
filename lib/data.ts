@@ -16,6 +16,7 @@ export const PROFILE = {
 }
 
 export const NAV = [
+  { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
   { id: 'achievements', label: 'Achievements' },
   { id: 'skills', label: 'Technology' },
@@ -260,6 +261,15 @@ export const CERTIFICATIONS: CertificationEntry[] = [
   { title: 'LangChain for LLM Application Development', issuer: 'DeepLearning.AI', date: 'Mar 2025', logo: '/logos/deeplearning-ai.png' },
   { title: 'Prompt Design in Vertex AI', issuer: 'Google Cloud', date: 'Mar 2025', logo: 'googlecloud' },
 ]
+
+// About Me — in Rahul's own words.
+export const ABOUT_LINES = [
+  'I always want to know why, not just how.',
+  "When something I built finally works, I'm genuinely proud.",
+  "In my free time, I'm out with friends trying something new.",
+]
+
+export const ABOUT_TAGS = ['Logical', 'Honest', 'Persistent', 'Techie', 'Friends first']
 
 // Shown under the name on the opening screen.
 export const HERO_STATS = [

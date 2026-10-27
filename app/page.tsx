@@ -2,6 +2,7 @@ import { Splash } from '@/components/Splash'
 import { Navigation } from '@/components/Navigation'
 import { ProgressLine } from '@/components/ProgressLine'
 import { Hero } from '@/components/Hero'
+import { About } from '@/components/About'
 import { Skills } from '@/components/Skills'
 import { Work } from '@/components/Work'
 import { Certifications } from '@/components/Certifications'
@@ -17,6 +18,7 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
+        <About />
         <Experience />
         <Achievements />
         <Skills />
