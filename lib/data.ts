@@ -248,10 +248,11 @@ export interface CertificationEntry {
   title: string
   issuer: string
   date: string
-  logo: string // image path under /public, or 'microsoft' | 'googlecloud' for inline marks
+  logo: string // image path under /public, or 'microsoft' | 'googlecloud' | 'nvidia' for inline marks
 }
 
 export const CERTIFICATIONS: CertificationEntry[] = [
+  { title: 'AI Infrastructure and Operations Fundamentals', issuer: 'NVIDIA', date: 'Oct 2026', logo: 'nvidia' },
   { title: 'AI and Career Empowerment', issuer: 'Robert H. Smith School of Business', date: 'Mar 2026', logo: '/logos/umd-smith.png' },
   { title: 'Understanding Agentic AI', issuer: 'Digital Workforce Services', date: 'May 2025', logo: '/logos/digital-workforce.png' },
   { title: 'Develop a RAG-based Solution with Azure AI Foundry', issuer: 'Microsoft', date: 'Apr 2025', logo: 'microsoft' },

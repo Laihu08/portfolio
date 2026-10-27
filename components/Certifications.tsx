@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { asset } from '@/lib/asset'
-import { siGooglecloud } from 'simple-icons'
+import { siGooglecloud, siNvidia } from 'simple-icons'
 import { CERTIFICATIONS, type CertificationEntry } from '@/lib/data'
 import { Reveal } from './Reveal'
 
@@ -19,6 +19,13 @@ function Logo({ logo, issuer }: Pick<CertificationEntry, 'logo' | 'issuer'>) {
     return (
       <svg viewBox="0 0 24 24" className="h-14 w-14" role="img" aria-label="Google Cloud">
         <path fill={`#${siGooglecloud.hex}`} d={siGooglecloud.path} />
+      </svg>
+    )
+  }
+  if (logo === 'nvidia') {
+    return (
+      <svg viewBox="0 0 24 24" className="h-14 w-14" role="img" aria-label="NVIDIA">
+        <path fill={`#${siNvidia.hex}`} d={siNvidia.path} />
       </svg>
     )
   }
