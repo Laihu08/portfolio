@@ -129,6 +129,8 @@ export const EXPERIENCE: ExperienceEntry[] = [
       'Built a multi-agent orchestration system for internal automation, from architecture to production on GCP.',
       'Integrated LLM, VLM and multimodal agents into real-time industrial workflows.',
       'Shipped scalable AI services on Vertex AI, connected through REST APIs.',
+      'Containerised AI workloads with Docker and Kubernetes, deployed through MLOps CI/CD pipelines.',
+      'Applied GPU infrastructure practices for multi-GPU scaling, workload scheduling and performance tuning.',
       'Brought open-source agent frameworks into enterprise infrastructure and defined reusable patterns.',
       'Added evaluation, monitoring and guardrails for reliable, responsible AI.',
     ],
