@@ -10,10 +10,10 @@ export function About() {
         </div>
       </Reveal>
 
-      <div className="max-w-4xl space-y-4 md:space-y-5">
+      <div className="space-y-4 md:space-y-5">
         {ABOUT_LINES.map((line, i) => (
           <Reveal key={line} delay={i * 120}>
-            <p className="text-2xl leading-snug md:text-4xl md:leading-tight">{line}</p>
+            <p className="text-pretty text-2xl leading-snug md:text-4xl md:leading-tight">{line}</p>
           </Reveal>
         ))}
       </div>
