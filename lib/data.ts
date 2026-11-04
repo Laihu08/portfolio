@@ -156,14 +156,14 @@ export const EXPERIENCE: ExperienceEntry[] = [
   },
   {
     title: 'Open Source Contributor',
-    company: 'Remote',
+    company: 'GitHub',
+    url: 'https://github.com/Laihu08',
     location: 'Remote',
     start: '',
     end: '',
     bonus: true,
     bullets: [
-      'Contributed to open-source LLM and RAG frameworks for agentic, real-time AI.',
-      'Building a real-time audio translator for macOS and Windows with Whisper.cpp.',
+      // filled from CONTRIBUTIONS below (kept current by the OSS routine)
     ],
   },
 ]
@@ -189,6 +189,7 @@ export interface ContributionEntry {
   footNote: string
   title: string
   summary: string
+  cvLine?: string // résumé-style line for the Experience section
   skills: string[]
   story: {
     title: string
@@ -218,6 +219,8 @@ const BASE_CONTRIBUTIONS: ContributionEntry[] = [
     title: 'Find sandboxes by team or environment',
     summary:
       'I updated OpenSandbox to search by details like team or environment first, so it can return matching sandboxes without loading unrelated ones.',
+    cvLine:
+      'Pushed sandbox search filters down to Kubernetes label selectors so non-matching sandboxes are never loaded; validated with 255 unit and integration tests',
     skills: ['Python', 'Kubernetes', 'Label selectors', 'Unit & integration testing'],
     story: {
       title: 'Find sandboxes using their details',
@@ -256,6 +259,8 @@ const BASE_CONTRIBUTIONS: ContributionEntry[] = [
     title: 'Stopped valid instructions being mistaken for broken ones',
     summary:
       'I fixed a bug that could discard valid text just because it began and ended with different pieces of compression syntax.',
+    cvLine:
+      'Fixed context-compression marker parsing that discarded valid LLM instructions, preserving prompt integrity in the compression pipeline',
     skills: ['Python', 'String handling', 'pytest', 'Ruff & mypy'],
     story: {
       title: 'Keep valid instructions from being discarded',
@@ -291,6 +296,8 @@ const BASE_CONTRIBUTIONS: ContributionEntry[] = [
     title: 'Help AI return answers in the requested format',
     summary:
       'I fixed how Ouroboros prepares structured-answer requests, so AI providers can understand the requested JSON format instead of rejecting it.',
+    cvLine:
+      'Fixed structured-output requests sent through LiteLLM so providers accept JSON Schema response formats; added regression tests across providers',
     skills: ['Python', 'LiteLLM', 'JSON Schema', 'pytest'],
     story: {
       title: 'Help AI return answers in the expected format',
@@ -328,6 +335,8 @@ const BASE_CONTRIBUTIONS: ContributionEntry[] = [
     title: 'Connect services that use simpler sign-in',
     summary:
       'I updated Paperclip to accept a valid sign-in when a service provides an authorization code but does not offer an optional refresh token.',
+    cvLine:
+      'Made HMAC-SHA256 webhook verification accept mixed legacy and current signature headers, so trusted routine triggers fire reliably',
     skills: ['TypeScript', 'OAuth', 'Integration testing', 'Vitest'],
     story: {
       title: 'Connect services with simpler sign-in',
@@ -365,6 +374,8 @@ const BASE_CONTRIBUTIONS: ContributionEntry[] = [
     title: 'Make trusted webhook triggers work reliably',
     summary:
       'I fixed a webhook issue where Paperclip could reject a valid request when the sender included both older and newer signature headers.',
+    cvLine:
+      'Added OAuth authorization-code support for providers without refresh tokens, extending third-party service integration',
     skills: ['TypeScript', 'Webhooks', 'HMAC-SHA256', 'Vitest'],
     story: {
       title: 'Help valid webhook requests reach their routine',
@@ -401,6 +412,8 @@ const BASE_CONTRIBUTIONS: ContributionEntry[] = [
     title: 'Keep calendar text from overlapping on iPhone',
     summary:
       'I adjusted the plan card’s year text to fit the screen, helping prevent it from colliding with the days-left indicator when people use larger text.',
+    cvLine:
+      'Made a Flutter calendar card layout responsive to screen width and accessibility text sizes on iOS',
     skills: ['Flutter', 'Dart', 'Responsive UI', 'Accessibility'],
     story: {
       title: 'Keep calendar text from overlapping on iPhone',
@@ -433,6 +446,36 @@ export const CONTRIBUTIONS: ContributionEntry[] = [
 ]
   .map((c) => ({ ...c, ...LIVE[`${c.repoUrl}#${c.pr}`] }))
   .filter((c) => c.status !== 'closed')
+
+// Open Source Contributor bullets, generated from the contribution cards and their live
+// stars/status, so every routine update (new PR, merge, stars) also updates the Experience section.
+function kStars(n: number) {
+  return n >= 1000 ? `${Math.floor(n / 1000)}k+` : `${n}`
+}
+function ossBullets(): string[] {
+  const byRepo = new Map<string, ContributionEntry[]>()
+  for (const c of CONTRIBUTIONS) byRepo.set(c.repoUrl, [...(byRepo.get(c.repoUrl) ?? []), c])
+  const merged = CONTRIBUTIONS.filter((c) => c.status === 'merged').length
+  const big = [...byRepo.values()].filter((cs) => cs[0].stars >= 1000)
+  const stars = big.reduce((sum, cs) => sum + cs[0].stars, 0)
+  const lines = [
+    `Contribute production fixes to open-source AI agent, LLM and developer-tooling projects with ${kStars(stars)} combined GitHub stars: ${CONTRIBUTIONS.length} pull requests across ${byRepo.size} projects, ${merged} merged.`,
+  ]
+  for (const cs of [...byRepo.values()].sort((a, b) => b[0].stars - a[0].stars)) {
+    const status = (c: ContributionEntry) => (c.status === 'merged' ? 'merged' : 'in review')
+    const parts = cs.map((c, i) => {
+      const t = (c.cvLine ?? c.title).replace(/\.$/, '')
+      return `${i ? t[0].toLowerCase() + t.slice(1) : t} (PR #${c.pr}, ${status(c)})`
+    })
+    lines.push(`${cs[0].repo} (${kStars(cs[0].stars)} ★): ${parts.join('; ')}.`)
+  }
+  lines.push(
+    "Work through each project's full contribution process: issue triage, maintainer communication, automated tests, lint and type checks, and CI.",
+    'Building a real-time audio translator for macOS and Windows with Whisper.cpp.',
+  )
+  return lines
+}
+EXPERIENCE.find((e) => e.title === 'Open Source Contributor')!.bullets = ossBullets()
 
 export interface ProjectEntry {
   title: string
