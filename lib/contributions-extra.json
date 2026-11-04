@@ -1,1 +1,56 @@
-[]
+[
+  {
+    "repo": "ECC",
+    "repoUrl": "https://github.com/affaan-m/ECC",
+    "stars": 296845,
+    "logo": "https://raw.githubusercontent.com/affaan-m/ECC/main/assets/images/ecc-logo.png",
+    "banner": "https://raw.githubusercontent.com/affaan-m/ECC/main/assets/hero.png",
+    "bannerAlt": "ECC's official repository banner for its agent harness",
+    "pr": 3870,
+    "label": "Keep warnings out of saved notes",
+    "diagramTitle": "Skip safety-stop notices in summaries",
+    "flow": [
+      "Read the\nsession",
+      "Skip the\nstop notice",
+      "Save only\nreal tasks"
+    ],
+    "footNote": "Notes stay accurate",
+    "title": "Stopped a safety warning from being replayed in the next session",
+    "summary": "I fixed a bug where a one-time safety-stop message was saved as a task and shown again at the start of the next session.",
+    "cvLine": "Fixed session-summary generation in an AI coding-agent hook so safety-classifier notices are no longer persisted and re-injected into later sessions; added regression tests covering the filtered, notice-only and mid-sentence cases",
+    "skills": [
+      "JavaScript",
+      "Node.js",
+      "Regular expressions",
+      "Regression testing"
+    ],
+    "story": {
+      "title": "Stop old warnings from coming back as tasks",
+      "lead": "ECC saves a short summary at the end of each coding session and shows it at the start of the next one. A safety-stop message was ending up in that summary.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "When a response was stopped by the safety classifier, the notice was saved as if the user had asked for it. The next session then showed it again as a past task, which could trigger the same warning repeatedly."
+        },
+        {
+          "heading": "My fix",
+          "text": "I made the summary step ignore messages that start with that safety-stop notice, while keeping any normal message that only mentions the phrase in the middle of a sentence."
+        },
+        {
+          "heading": "The outcome",
+          "text": "I added three tests for this; the session-end test file passes (21 of 21) and two of the new tests fail without the fix. I could not trigger a real safety stop, so the notice shape comes from the issue report."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #3870",
+          "url": "https://github.com/affaan-m/ECC/pull/3870"
+        },
+        {
+          "label": "Related issue #3867",
+          "url": "https://github.com/affaan-m/ECC/issues/3867"
+        }
+      ]
+    }
+  }
+]
