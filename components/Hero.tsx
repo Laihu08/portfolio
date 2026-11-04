@@ -21,7 +21,7 @@ export function Hero() {
 
       <dl className="mt-16 flex items-stretch justify-center divide-x divide-[var(--line)] border-y border-[var(--line)]">
         {HERO_STATS.map((stat) => (
-          <div key={stat.label} className="px-8 py-5 text-center sm:px-14">
+          <div key={stat.label} className={`relative px-8 py-5 text-center sm:px-14${'href' in stat ? ' group' : ''}`}>
             <dd
               className="flex items-center justify-center gap-3 text-4xl font-semibold tabular-nums sm:text-5xl"
               style={{ fontFamily: 'var(--font-display)' }}
@@ -29,7 +29,20 @@ export function Hero() {
               <CountUp value={stat.value} suffix={stat.suffix} />
               {'icon' in stat && stat.icon === 'patent' && <PatentIcon className="h-9 w-9 sm:h-11 sm:w-11" />}
             </dd>
-            <dt className="mt-1 text-sm text-[var(--mute)]">{stat.label}</dt>
+            <dt className="mt-1 text-sm text-[var(--mute)]">
+              {'href' in stat && stat.href ? (
+                <a
+                  href={stat.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-dotted underline-offset-4 group-hover:text-[var(--ink)] after:absolute after:inset-0"
+                >
+                  {stat.label} ↗
+                </a>
+              ) : (
+                stat.label
+              )}
+            </dt>
           </div>
         ))}
       </dl>

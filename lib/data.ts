@@ -558,7 +558,7 @@ export const ABOUT_TAGS = ['Logical', 'Honest', 'Persistent', 'Techie', 'Friends
 export const HERO_STATS = [
   { value: 5, suffix: '+', label: 'Years of experience' },
   { value: 2, suffix: '', label: 'International patents', icon: 'patent' as const },
-  { value: (ossLive as { githubContributions: number }).githubContributions, suffix: '', label: 'GitHub contributions' },
+  { value: (ossLive as { githubContributions: number }).githubContributions, suffix: '', label: 'GitHub contributions', href: 'https://github.com/Laihu08' },
 ]
 
 
