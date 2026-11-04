@@ -36,13 +36,13 @@ export function Navigation() {
           }`}
         />
 
-        <nav className={`relative hidden md:flex items-center gap-9 ${reveal}`} aria-hidden={!pastHero}>
+        <nav className={`relative hidden lg:flex items-center gap-7 xl:gap-6 2xl:gap-9 ${reveal}`} aria-hidden={!pastHero}>
           {NAV.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
               tabIndex={pastHero ? 0 : -1}
-              className={`relative pb-1 text-[15px] font-light transition-colors duration-300 ${
+              className={`relative pb-1 text-[14px] 2xl:text-[15px] font-light whitespace-nowrap transition-colors duration-300 ${
                 active === item.id ? 'text-[var(--ink)]' : 'text-[var(--mute)] hover:text-[var(--ink)]'
               }`}
             >
@@ -56,11 +56,11 @@ export function Navigation() {
         </nav>
 
         <div className="absolute right-[var(--gutter)] top-1/2 -translate-y-1/2 flex items-center gap-2">
-          <SocialLinks className={`hidden lg:flex ${reveal}`} size={18} />
+          <SocialLinks className={`hidden xl:flex ${reveal}`} size={18} />
           <ThemeToggle />
           <button
             onClick={() => setMenuOpen(true)}
-            className={`md:hidden rounded-full border border-[var(--line)] bg-[var(--card)]/70 px-5 py-2.5 text-sm font-medium ${reveal}`}
+            className={`lg:hidden rounded-full border border-[var(--line)] bg-[var(--card)]/70 px-5 py-2.5 text-sm font-medium ${reveal}`}
             aria-label="Open menu"
           >
             Menu
@@ -69,7 +69,7 @@ export function Navigation() {
       </header>
 
       {menuOpen && (
-        <div className="fixed inset-0 z-[60] bg-[var(--paper)] flex flex-col items-center justify-center gap-6 md:hidden">
+        <div className="fixed inset-0 z-[60] bg-[var(--paper)] flex flex-col items-center justify-center gap-6 lg:hidden">
           <button
             onClick={() => setMenuOpen(false)}
             className="absolute top-5 right-[var(--gutter)] rounded-full border border-[var(--line)] px-5 py-2.5 text-sm font-medium"
