@@ -1,3 +1,5 @@
+import ossLive from './oss-live.json'
+import extraContributions from './contributions-extra.json'
 // Single source of truth for all on-page content. Every name, date, company, skill
 // and achievement here is taken verbatim from the résumé — nothing invented.
 // Components only read from this file.
@@ -173,6 +175,7 @@ export interface StoryStep {
 
 export interface ContributionEntry {
   repo: string
+  status?: 'open' | 'merged' | 'closed' // live, from oss-live.json
   repoUrl: string
   stars: number
   logo?: string
@@ -197,7 +200,9 @@ export interface ContributionEntry {
 
 const GH = 'https://raw.githubusercontent.com'
 
-export const CONTRIBUTIONS: ContributionEntry[] = [
+// Hand-written stories. New ones are added to contributions-extra.json by the OSS team;
+// stars and status are refreshed in oss-live.json (OSS/tools/portfolio/update.py).
+const BASE_CONTRIBUTIONS: ContributionEntry[] = [
   {
     repo: 'OpenSandbox',
     repoUrl: 'https://github.com/opensandbox-group/OpenSandbox',
@@ -419,6 +424,16 @@ export const CONTRIBUTIONS: ContributionEntry[] = [
   },
 ]
 
+type Live = { stars?: number; status?: 'open' | 'merged' | 'closed' }
+const LIVE = (ossLive as { items: Record<string, Live> }).items
+
+export const CONTRIBUTIONS: ContributionEntry[] = [
+  ...BASE_CONTRIBUTIONS,
+  ...(extraContributions as ContributionEntry[]),
+]
+  .map((c) => ({ ...c, ...LIVE[`${c.repoUrl}#${c.pr}`] }))
+  .filter((c) => c.status !== 'closed')
+
 export interface ProjectEntry {
   title: string
   kind: string // e.g. "Personal Project", "M.Sc. Thesis"
@@ -543,6 +558,7 @@ export const ABOUT_TAGS = ['Logical', 'Honest', 'Persistent', 'Techie', 'Friends
 export const HERO_STATS = [
   { value: 5, suffix: '+', label: 'Years of experience' },
   { value: 2, suffix: '', label: 'International patents', icon: 'patent' as const },
+  { value: (ossLive as { total: number }).total, suffix: '', label: 'Open-source contributions' },
 ]
 
 

@@ -600,3 +600,24 @@ html.theme-fade *::after {
   .oss-flow-node { font-size: 9px; }
   .oss-story li { grid-template-columns: 1fr; gap: 7px; }
 }
+
+/* Live PR status next to the star count (OSS/tools/portfolio/update.py) */
+.oss-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.oss-status {
+  display: inline-flex;
+  height: 28px;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+}
+.oss-status-merged { background: #8250df; }
+.oss-status-open { background: #1f883d; }

@@ -1,0 +1,30 @@
+{
+  "updatedAt": "2026-11-04T05:42:36+00:00",
+  "total": 6,
+  "items": {
+    "https://github.com/opensandbox-group/OpenSandbox#2559": {
+      "stars": 16436,
+      "status": "merged"
+    },
+    "https://github.com/headroomlabs-ai/headroom#4626": {
+      "stars": 78775,
+      "status": "open"
+    },
+    "https://github.com/Q00/ouroboros#2818": {
+      "stars": 6311,
+      "status": "open"
+    },
+    "https://github.com/paperclipai/paperclip#18589": {
+      "stars": 110880,
+      "status": "open"
+    },
+    "https://github.com/paperclipai/paperclip#18580": {
+      "stars": 110880,
+      "status": "open"
+    },
+    "https://github.com/searchwork/nwt-reading#255": {
+      "stars": 26,
+      "status": "open"
+    }
+  }
+}

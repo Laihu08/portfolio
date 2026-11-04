@@ -229,7 +229,14 @@ function ContributionCard({
                 <span>{c.repo}</span>
               </a>
             </div>
-            <Stars c={c} />
+            <span className="oss-meta">
+              <Stars c={c} />
+              {c.status && (
+                <a className={`oss-status oss-status-${c.status}`} href={prUrl} {...external}>
+                  {c.status === 'merged' ? 'Merged' : 'Open'}
+                </a>
+              )}
+            </span>
           </div>
           <img className="oss-banner" src={c.banner} alt={c.bannerAlt} loading="lazy" />
           <p className="oss-diagram-title">{c.diagramTitle}</p>
