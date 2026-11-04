@@ -52,5 +52,59 @@
         }
       ]
     }
+  },
+  {
+    "repo": "Strix",
+    "repoUrl": "https://github.com/usestrix/strix",
+    "stars": 73765,
+    "logo": "https://raw.githubusercontent.com/usestrix/strix/main/docs/logo/strix.png",
+    "banner": "https://raw.githubusercontent.com/usestrix/strix/main/docs/images/screenshot.png",
+    "bannerAlt": "Strix's official screenshot of its security-testing interface",
+    "pr": 1648,
+    "label": "Keep terminal commands working at startup",
+    "diagramTitle": "Declare terminal support before the sandbox is ready",
+    "flow": [
+      "Sandbox\nstarting",
+      "Report terminal\nsupport",
+      "First command\nruns"
+    ],
+    "footNote": "Commands work from the first try",
+    "title": "Stopped the first command from timing out while a sandbox starts",
+    "summary": "I fixed a bug where a command sent to a sandbox that was still starting up was treated as a one-off job and timed out, instead of running in a proper terminal.",
+    "cvLine": "Fixed deferred sandbox startup in an AI security-testing agent so backends declare terminal (PTY) support up front and the first shell command keeps its interactive session; added regression tests, including one on the SDK's real local sandbox client",
+    "skills": [
+      "Python",
+      "Async programming",
+      "pytest",
+      "Ruff & mypy"
+    ],
+    "story": {
+      "title": "Make the first command work while the sandbox is still starting",
+      "lead": "Strix can start its sandbox in the background so the agent does not have to wait. Until it finished starting, it told the tools that terminals were not available.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "While the sandbox was still starting, it reported that it had no terminal support. The agent library checked this straight away, so it left out the tool for typing into a running command and ran the first command as a one-off job. That command then hit a hard time limit and never returned a session to continue with."
+        },
+        {
+          "heading": "My fix",
+          "text": "Each sandbox backend now says up front whether it supports terminals, and the built-in Docker one does. The still-starting sandbox repeats that answer until it is ready, then goes back to asking the real sandbox. Backends that do not say anything behave as before."
+        },
+        {
+          "heading": "The outcome",
+          "text": "I added three tests, including the bug report's reproduction using the library's real local sandbox. The test file passes with 13 tests. The full suite has the same 19 failures as the main branch, and the code checks (ruff, mypy, bandit) pass."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #1648",
+          "url": "https://github.com/usestrix/strix/pull/1648"
+        },
+        {
+          "label": "Related issue #1623",
+          "url": "https://github.com/usestrix/strix/issues/1623"
+        }
+      ]
+    }
   }
 ]
