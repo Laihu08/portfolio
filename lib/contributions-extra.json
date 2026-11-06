@@ -106,5 +106,60 @@
         }
       ]
     }
+  },
+  {
+    "repo": "Paperclip",
+    "repoUrl": "https://github.com/paperclipai/paperclip",
+    "stars": 111535,
+    "logo": "https://raw.githubusercontent.com/paperclipai/paperclip/master/docs/images/logo-dark.svg",
+    "banner": "https://github.com/paperclipai.png",
+    "bannerAlt": "Paperclip's official avatar",
+    "pr": 19420,
+    "label": "Wait for provider reset before retrying",
+    "diagramTitle": "Schedule heartbeat retries after limit reset",
+    "flow": [
+      "Hit usage limit",
+      "Parse reset time",
+      "Wait and retry safely"
+    ],
+    "footNote": "Prevent retry storms",
+    "title": "Stopped heartbeat retries from hammering providers after usage limit errors",
+    "summary": "I fixed a bug where agent heartbeats retried every 30 seconds after hitting a provider usage limit, scheduling a single retry after the reset time instead.",
+    "cvLine": "Fixed agent heartbeat retry scheduler to extract UTC usage-limit reset times and schedule a single retry at reset plus one minute, preventing provider retry storms; validated with comprehensive unit and database integration tests",
+    "skills": [
+      "TypeScript",
+      "Node.js",
+      "Vitest",
+      "PostgreSQL",
+      "Backend Engineering"
+    ],
+    "story": {
+      "title": "Stop heartbeat retry storms after provider usage limits",
+      "lead": "When an agent run hit a provider usage limit error, the retry scheduler hammered the provider every 30 seconds until attempts were exhausted.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "Ordinary transient retries kept hammering the provider every ~30s after a usage-limit error (e.g. You've hit your limit · resets 3pm), wasting API calls while the quota window remained exhausted."
+        },
+        {
+          "heading": "My fix",
+          "text": "I added a helper to parse the UTC reset clock from error messages or structured retryNotBefore values, capped limit retries at 1 attempt, and scheduled the retry at reset time plus 1 minute. Ambiguous reset clocks cleanly suppress fast retries."
+        },
+        {
+          "heading": "The outcome",
+          "text": "Validated with 31 passing unit tests and a database integration test in Vitest, along with passing module boundary and map checks."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #19420",
+          "url": "https://github.com/paperclipai/paperclip/pull/19420"
+        },
+        {
+          "label": "Related issue #18550",
+          "url": "https://github.com/paperclipai/paperclip/issues/18550"
+        }
+      ]
+    }
   }
 ]
