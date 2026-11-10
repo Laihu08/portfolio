@@ -217,5 +217,60 @@
         }
       ]
     }
+  },
+  {
+    "repo": "Headroom",
+    "repoUrl": "https://github.com/headroomlabs-ai/headroom",
+    "stars": 79285,
+    "logo": "https://github.com/headroomlabs-ai.png",
+    "banner": "https://raw.githubusercontent.com/headroomlabs-ai/headroom/main/.github/assets/hero.svg",
+    "bannerAlt": "Headroom's official repository banner showing context compression and preserved content",
+    "pr": 4751,
+    "label": "Show server rejections instead of hiding them",
+    "diagramTitle": "Stop retrying requests the server rejected",
+    "flow": [
+      "Server rejects\nthe request",
+      "Recognize the\nrejection type",
+      "Report it\nright away"
+    ],
+    "footNote": "Clear errors, no pointless retries",
+    "title": "Stopped the TypeScript client hiding server rejections behind retries",
+    "summary": "I fixed Headroom's TypeScript client so that when the server rejects a request as invalid, the app is told right away instead of the client retrying and silently carrying on.",
+    "cvLine": "Fixed TypeScript SDK error handling so typed 4xx proxy errors are rethrown instead of retried and swallowed by the fallback path, and made the error-type lookup safe against inherited object keys; validated with 7 new regression tests (456 SDK tests passing) and a local HTTP stub reproduction",
+    "skills": [
+      "TypeScript",
+      "Node.js",
+      "Vitest",
+      "Error handling",
+      "HTTP APIs"
+    ],
+    "story": {
+      "title": "Show the real error when the server rejects a request",
+      "lead": "Headroom's TypeScript client talks to a proxy that compresses AI requests. When the proxy rejected a request as invalid, the client could hide that answer.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "When the proxy replied with a specific kind of 4xx rejection, such as a configuration or validation error, the client treated it like a temporary failure. It retried the request and, with the default settings, quietly returned the uncompressed data, so the caller never saw the rejection. The lookup that turns the proxy's error type into an error class could also pick up built-in object names like constructor by mistake."
+        },
+        {
+          "heading": "My fix",
+          "text": "The client now stops and reports any specific error that carries a status below 500, while server-side (5xx) and connection errors are still retried as before. The error-type lookup now only accepts names that were deliberately listed."
+        },
+        {
+          "heading": "The outcome",
+          "text": "I added 7 regression tests, and 6 of them fail without the fix. The full TypeScript SDK test suite passes (456 passed, 33 skipped), and type checking and the build pass. A before-and-after run against a local stub server shows the rejection now reaching the caller after a single request."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #4751",
+          "url": "https://github.com/headroomlabs-ai/headroom/pull/4751"
+        },
+        {
+          "label": "Related issue #4742",
+          "url": "https://github.com/headroomlabs-ai/headroom/issues/4742"
+        }
+      ]
+    }
   }
 ]
