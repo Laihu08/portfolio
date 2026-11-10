@@ -161,5 +161,61 @@
         }
       ]
     }
+  },
+  {
+    "repo": "OpenLIT",
+    "repoUrl": "https://github.com/openlit/openlit",
+    "stars": 2975,
+    "logo": "https://raw.githubusercontent.com/openlit/.github/main/profile/assets/wide-logo-no-bg.png",
+    "logoWordmark": true,
+    "banner": "https://raw.githubusercontent.com/openlit/openlit/main/docs/images/docs-ui-banner.jpeg",
+    "bannerAlt": "OpenLIT's official dashboard preview with cost, latency and usage charts",
+    "pr": 1942,
+    "label": "Report successful AI calls as successful",
+    "diagramTitle": "Record Prem AI calls with their token usage",
+    "flow": [
+      "Prem AI\nreplies",
+      "Read the\nreply data",
+      "Record usage\nand status"
+    ],
+    "footNote": "Successful calls shown as successful",
+    "title": "Stopped successful Prem AI calls being reported as errors",
+    "summary": "I fixed OpenLIT so that normal Prem AI chat and embedding calls are recorded as successful, with their token counts, instead of as errors with no usage.",
+    "cvLine": "Fixed OpenTelemetry instrumentation for the Prem AI SDK that exported successful non-streaming chat and embedding calls as ERROR spans without token usage, by normalising SDK response objects before reading them; added hermetic regression tests (21 passing) and verified the before and after behaviour",
+    "skills": [
+      "Python",
+      "OpenTelemetry",
+      "Observability",
+      "pytest",
+      "pylint"
+    ],
+    "story": {
+      "title": "Report successful Prem AI calls as successful",
+      "lead": "OpenLIT records traces of AI calls. With Prem AI, normal calls that worked were being recorded as errors and without token counts.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "Recent Prem AI versions return their replies as objects rather than plain dictionaries. OpenLIT read them as dictionaries, hit an error, and so every successful non-streaming chat and embedding call was recorded as an error with no token usage."
+        },
+        {
+          "heading": "My fix",
+          "text": "I reused the conversion that OpenLIT already applied to streamed replies for the non-streaming chat and embedding calls, so the reply is turned into a dictionary before it is read. An embedding reply without usage data no longer causes an error either."
+        },
+        {
+          "heading": "The outcome",
+          "text": "In an offline before-and-after check with the real Prem AI 0.3.107 reply types, the calls went from ERROR with no token counts to OK with token counts, finish reason and response id. The new and existing Prem AI tests give 21 passing, and pylint scores 10.00/10."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #1942",
+          "url": "https://github.com/openlit/openlit/pull/1942"
+        },
+        {
+          "label": "Related issue #1887",
+          "url": "https://github.com/openlit/openlit/issues/1887"
+        }
+      ]
+    }
   }
 ]
