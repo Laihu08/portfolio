@@ -272,5 +272,59 @@
         }
       ]
     }
+  },
+  {
+    "repo": "Agents",
+    "repoUrl": "https://github.com/wshobson/agents",
+    "stars": 42398,
+    "logo": "https://github.com/wshobson.png",
+    "banner": "https://github.com/wshobson.png",
+    "bannerAlt": "The wshobson GitHub account avatar, owner of the Agents project",
+    "pr": 823,
+    "label": "Read quoted text the way Markdown does",
+    "diagramTitle": "Track quote depth for every line",
+    "flow": [
+      "Read the\n> markers",
+      "Apply block\nrules inside",
+      "Fence, heading,\nblank line end correctly"
+    ],
+    "footNote": "Quoted code and headings are bounded correctly",
+    "title": "Made plugin checks understand text inside nested quotes",
+    "summary": "I fixed a bug where a checker for AI plugins misread code and headings inside quoted Markdown, so it could pair up the wrong pieces of text.",
+    "cvLine": "Fixed Markdown parsing in a plugin-evaluation tool by tracking blockquote nesting depth per line so fenced code, headings and blank lines inside quotes bound code spans as CommonMark specifies; added three regression tests and validated with 770 passing tests",
+    "skills": [
+      "Python",
+      "Markdown / CommonMark",
+      "pytest",
+      "Ruff & ty"
+    ],
+    "story": {
+      "title": "Make quoted code and headings end where they should",
+      "lead": "The plugin checker finds references to other files in plugin documents, and it skips code. Quoted text, lines starting with >, confused it.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "The checker ignored how deeply a line was quoted. A code block opened inside a nested quote stayed open after the quote ended, a heading inside a quote did not end a paragraph, and a line holding only > was not seen as blank. A stray backtick could then pair with one in the next paragraph."
+        },
+        {
+          "heading": "My fix",
+          "text": "It now counts the > markers on each line and applies the code block, heading and list rules to the text after them. A code block closes when a line is quoted less deeply than where it opened, and a line of only > counts as blank. It follows the plan the maintainer wrote in the issue."
+        },
+        {
+          "heading": "The outcome",
+          "text": "I added one test for each case in the issue. They fail on the main branch and pass with the fix. The full suite passes with 770 tests, and the lint, validation and version checks are clean. The 9 smoke tests that need other tools installed were skipped."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #823",
+          "url": "https://github.com/wshobson/agents/pull/823"
+        },
+        {
+          "label": "Related issue #813",
+          "url": "https://github.com/wshobson/agents/issues/813"
+        }
+      ]
+    }
   }
 ]
