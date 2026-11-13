@@ -326,5 +326,60 @@
         }
       ]
     }
+  },
+  {
+    "repo": "InvokeAI",
+    "repoUrl": "https://github.com/invoke-ai/InvokeAI",
+    "stars": 29081,
+    "logo": "https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/docs/src/assets/v7-logo.webp",
+    "banner": "https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/docs/src/content/docs/assets/splash-banner.png",
+    "bannerAlt": "InvokeAI's official documentation splash banner",
+    "pr": 10264,
+    "label": "Check image links where the download really goes",
+    "diagramTitle": "Fetch reference images through the safe downloader",
+    "flow": [
+      "Check the\nlink's address",
+      "Download only\nfrom that address",
+      "Block hidden\nlocal routes"
+    ],
+    "footNote": "Proxy settings and IPv6 tricks no longer bypass the check",
+    "title": "Closed two ways around InvokeAI's safety check for image links",
+    "summary": "I fixed InvokeAI's image search so that a proxy setting or a special IPv6 address can no longer trick it into fetching from the machine it runs on.",
+    "cvLine": "Hardened a server-side image URL fetch against SSRF by routing it through the project's guarded HTTP session, which ignores ambient proxy settings and checks the connected peer, and by reusing the shared URL validator so NAT64 addresses are rejected; validated with 3 new regression tests that fail before the fix (172 tests passing across the SSRF and image-map suites)",
+    "skills": [
+      "Python",
+      "FastAPI",
+      "SSRF hardening",
+      "pytest",
+      "Ruff"
+    ],
+    "story": {
+      "title": "Make the image-link safety check match where the bytes really come from",
+      "lead": "InvokeAI's semantic search can fetch a reference image from a link. It checks the link's address first, so it should never reach the server's own network.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "The check looked at the address of the link, but the download then used a plain web request. If a proxy was set in the environment, the request went through the proxy, not to the address that was checked. Separately, the special IPv6 address 64:ff9b::7f00:1 is reported as a public address but maps back to the local machine (127.0.0.1), so it passed the check."
+        },
+        {
+          "heading": "My fix",
+          "text": "The download now goes through the project's existing guarded session, which ignores proxy settings and checks the address it actually connects to. The old hand-written address check now uses the shared validator, which blocks these special IPv6 ranges. The per-redirect checks and the error response are unchanged."
+        },
+        {
+          "heading": "The outcome",
+          "text": "I added three regression tests: redirects are still re-checked through the guarded session, the special IPv6 address is rejected before any request is made, and proxy settings are ignored. All three fail on the old code and pass now. The SSRF and image-map test files pass together (172 passed), and the lint and format checks pass."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #10264",
+          "url": "https://github.com/invoke-ai/InvokeAI/pull/10264"
+        },
+        {
+          "label": "Related issue #9633",
+          "url": "https://github.com/invoke-ai/InvokeAI/issues/9633"
+        }
+      ]
+    }
   }
 ]
