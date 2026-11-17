@@ -1,50 +1,54 @@
 {
-  "updatedAt": "2026-11-17T20:03:09+00:00",
-  "total": 14,
-  "githubContributions": 411,
+  "updatedAt": "2026-11-17T22:28:44+00:00",
+  "total": 15,
+  "githubContributions": 414,
   "items": {
+    "https://github.com/EKKOLearnAI/ekko-studio#3867": {
+      "stars": 11787,
+      "status": "open"
+    },
     "https://github.com/Q00/ouroboros#2818": {
-      "stars": 6373,
+      "stars": 6374,
       "status": "merged"
     },
     "https://github.com/affaan-m/ECC#3870": {
-      "stars": 305332,
+      "stars": 305427,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4626": {
-      "stars": 79908,
+      "stars": 79915,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4751": {
-      "stars": 79908,
+      "stars": 79915,
       "status": "merged"
     },
     "https://github.com/invoke-ai/InvokeAI#10264": {
-      "stars": 29110,
+      "stars": 29109,
       "status": "merged"
     },
     "https://github.com/invoke-ai/InvokeAI#10313": {
-      "stars": 29110,
+      "stars": 29109,
       "status": "open"
     },
     "https://github.com/openlit/openlit#1942": {
-      "stars": 3088,
+      "stars": 3087,
       "status": "open"
     },
     "https://github.com/opensandbox-group/OpenSandbox#2559": {
-      "stars": 17466,
+      "stars": 17470,
       "status": "merged"
     },
     "https://github.com/paperclipai/paperclip#18580": {
-      "stars": 114540,
+      "stars": 114555,
       "status": "open"
     },
     "https://github.com/paperclipai/paperclip#18589": {
-      "stars": 114540,
+      "stars": 114555,
       "status": "open"
     },
     "https://github.com/paperclipai/paperclip#19420": {
-      "stars": 114540,
+      "stars": 114555,
       "status": "open"
     },
     "https://github.com/searchwork/nwt-reading#255": {
@@ -52,11 +56,11 @@
       "status": "open"
     },
     "https://github.com/usestrix/strix#1648": {
-      "stars": 76295,
+      "stars": 76325,
       "status": "open"
     },
     "https://github.com/wshobson/agents#823": {
-      "stars": 42625,
+      "stars": 42626,
       "status": "open"
     }
   }

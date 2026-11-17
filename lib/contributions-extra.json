@@ -436,5 +436,60 @@
         }
       ]
     }
+  },
+  {
+    "repo": "Ekko Studio",
+    "repoUrl": "https://github.com/EKKOLearnAI/ekko-studio",
+    "stars": 11787,
+    "logo": "https://raw.githubusercontent.com/EKKOLearnAI/ekko-studio/main/packages/client/public/logo.png",
+    "banner": "https://raw.githubusercontent.com/EKKOLearnAI/ekko-studio/main/docs/screenshots/overview/workflow.png",
+    "bannerAlt": "Ekko Studio's multi-agent workflow overview",
+    "pr": 3867,
+    "label": "Handle vanished worker sockets gracefully",
+    "diagramTitle": "Treat vanished worker connections as cold sessions",
+    "flow": [
+      "Query worker\nfor status",
+      "Catch missing\nor dead socket",
+      "Return cold\nunloaded session"
+    ],
+    "footNote": "Vanished sockets mean the worker stopped, which is a normal cold state rather than a system failure",
+    "title": "Prevented UI crash when reattaching to idle agent sessions",
+    "summary": "I fixed Ekko Studio's agent bridge so resuming an idle session whose worker socket has vanished is treated as an unloaded session instead of raising an error in the UI.",
+    "cvLine": "Handled missing and disconnected worker IPC sockets during session status checks in Ekko Studio, preventing false failure errors when resuming idle agents; validated with 5 unit tests and full Vitest suite",
+    "skills": [
+      "Python",
+      "TypeScript",
+      "IPC",
+      "Multi-Agent Systems",
+      "Vitest"
+    ],
+    "story": {
+      "title": "Handle unloaded worker socket errors when resuming idle sessions",
+      "lead": "When an agent worker process stopped or its socket file disappeared during idle cleanup, resuming the session triggered an unhandled socket error instead of marking the session as cold.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "In Ekko Studio's Hermes bridge broker, checking status for an existing session queried the worker process socket directly. If the worker was garbage-collected or its Unix domain socket disappeared right after the running check, the connection attempt threw a FileNotFoundError or ConnectionRefusedError. Because only RuntimeError was handled, the unhandled socket error bubbled up and caused session reattachment to fail with an error banner in the interface."
+        },
+        {
+          "heading": "My fix",
+          "text": "I updated BridgeBroker._status_if_loaded to query workers with start_if_needed=False so idle workers are not inadvertently respawned during status checks, and added error handling for OSError to treat vanished or refused sockets as cold, unloaded sessions. I also updated the facade WorkerProcess.request method to forward the start_if_needed parameter."
+        },
+        {
+          "heading": "The outcome",
+          "text": "I added a dedicated Python test fixture and Vitest test suite verifying that missing socket files, connection refusals, and skipped worker requests cleanly return unloaded session statuses while preserving standard runtime errors. All 5 test cases in the fixture passed, the Vitest integration suite passed, and project harness checks passed cleanly."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #3867",
+          "url": "https://github.com/EKKOLearnAI/ekko-studio/pull/3867"
+        },
+        {
+          "label": "Related issue #3092",
+          "url": "https://github.com/EKKOLearnAI/ekko-studio/issues/3092"
+        }
+      ]
+    }
   }
 ]
