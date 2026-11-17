@@ -381,5 +381,60 @@
         }
       ]
     }
+  },
+  {
+    "repo": "InvokeAI",
+    "repoUrl": "https://github.com/invoke-ai/InvokeAI",
+    "stars": 29105,
+    "logo": "https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/docs/src/assets/v7-logo.webp",
+    "banner": "https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/docs/src/content/docs/assets/splash-banner.png",
+    "bannerAlt": "InvokeAI's official documentation splash banner",
+    "pr": 10313,
+    "label": "Skip redundant negative pass at guidance scale 1",
+    "diagramTitle": "Run single-batch denoising when guidance scale is 1",
+    "flow": [
+      "Check guidance scale\nfor every step",
+      "Skip negative pass\nwhen scale is 1",
+      "Halve transformer pass\nand memory use"
+    ],
+    "footNote": "Guidance scale 1.0 discards the negative prompt mathematically, so computing it was pure waste",
+    "title": "Eliminated wasted model passes during Stable Diffusion 3 generation without guidance",
+    "summary": "I optimized InvokeAI's Stable Diffusion 3 denoising loop so generation at guidance scale 1.0 skips loading negative conditioning and halves model compute by dropping the unconditional pass.",
+    "cvLine": "Eliminated redundant negative conditioning and unconditional transformer forward passes in Stable Diffusion 3 denoising when guidance scale equals 1.0, halving transformer compute and activation memory for Turbo workflows; verified with 3 regression unit tests (4 passed across the SD3 suite)",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "Diffusers",
+      "Performance optimization",
+      "pytest"
+    ],
+    "story": {
+      "title": "Skip the unconditional pass in SD3 generation when guidance scale is 1.0",
+      "lead": "Stable Diffusion 3.5 Large Turbo defaults to a classifier-free guidance scale of 1.0. At scale 1.0, the negative conditioning is mathematically discarded, but InvokeAI was still loading it and computing it every step.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "Classifier-free guidance combines conditional and unconditional passes: output = uncond + scale * (cond - uncond). When scale is exactly 1.0, this formula simplifies to output = cond. Despite this, InvokeAI's SD3 denoising node hardcoded guidance enabled, loaded negative text conditioning, and fed a doubled batch (both negative and positive) through the multi-billion parameter transformer at every step, wasting half the compute and activation memory."
+        },
+        {
+          "heading": "My fix",
+          "text": "I updated the denoising routine to check whether any step actually uses guidance. When all steps use guidance scale 1.0, loading negative conditioning is skipped entirely and the transformer runs with batch size 1 directly on positive conditioning. For schedules with mixed scales, negative conditioning is loaded once and individual 1.0 steps execute without batching."
+        },
+        {
+          "heading": "The outcome",
+          "text": "I added unit tests covering scalar scale 1.0, standard scale 3.5, and mixed step schedules to verify that negative conditioning is omitted and transformer batch sizing matches expectations. All 4 tests in the SD3 denoise test suite passed, and Ruff linter and formatter checks succeeded with zero issues."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #10313",
+          "url": "https://github.com/invoke-ai/InvokeAI/pull/10313"
+        },
+        {
+          "label": "Related issue #9982",
+          "url": "https://github.com/invoke-ai/InvokeAI/issues/9982"
+        }
+      ]
+    }
   }
 ]
