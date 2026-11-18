@@ -491,5 +491,60 @@
         }
       ]
     }
+  },
+  {
+    "repo": "Headroom",
+    "repoUrl": "https://github.com/headroomlabs-ai/headroom",
+    "stars": 79988,
+    "logo": "https://raw.githubusercontent.com/headroomlabs-ai/headroom/main/docs/public/assets/headroom-logomark.svg",
+    "banner": "https://raw.githubusercontent.com/headroomlabs-ai/headroom/main/.github/assets/hero.svg",
+    "bannerAlt": "Headroom’s official context compression banner",
+    "pr": 4917,
+    "label": "Send requests to the right AI service address",
+    "diagramTitle": "Avoid adding a second version to the address",
+    "flow": [
+      "Read service\naddress",
+      "Keep its\nversion",
+      "Reach the\nright endpoint"
+    ],
+    "footNote": "A versioned service address now reaches the intended endpoint",
+    "title": "Fixed broken requests to versioned AI services",
+    "summary": "I fixed Headroom’s proxy so requests reach AI services whose addresses already include a version, instead of returning a missing-page error.",
+    "cvLine": "Corrected OpenAI-compatible proxy URL routing for versioned upstream bases, eliminating duplicated path segments and 404 responses; validated with 223 focused tests and 177 pre-push Python tests",
+    "skills": [
+      "Python",
+      "HTTP routing",
+      "OpenAI-compatible APIs",
+      "pytest",
+      "Rust CI"
+    ],
+    "story": {
+      "title": "Send AI requests to a versioned service address",
+      "lead": "Some AI services include a version in their address. Headroom was adding another version when forwarding requests, which sent them to a path the service did not recognize.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "An AI service configured with an address ending in a version such as /v4 received requests with an extra /v1 in the path. In a real local HTTP check, that doubled path returned 404."
+        },
+        {
+          "heading": "My fix",
+          "text": "I changed how the proxy joins addresses: when the configured address ends in a numeric version, it removes only the incoming /v1 prefix. I added routing cases for versioned and unversioned addresses and kept the existing Copilot routes."
+        },
+        {
+          "heading": "The outcome",
+          "text": "The same local HTTP check reached the intended path and returned 200 after the fix. All 223 focused tests passed; the pre-push gate passed with 177 Python tests, 8 skips, Rust checks, and commitlint."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #4917",
+          "url": "https://github.com/headroomlabs-ai/headroom/pull/4917"
+        },
+        {
+          "label": "Related issue #4915",
+          "url": "https://github.com/headroomlabs-ai/headroom/issues/4915"
+        }
+      ]
+    }
   }
 ]
