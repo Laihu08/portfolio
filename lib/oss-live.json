@@ -1,30 +1,30 @@
 {
-  "updatedAt": "2026-11-18T14:04:50+00:00",
+  "updatedAt": "2026-11-18T16:04:49+00:00",
   "total": 16,
-  "githubContributions": 454,
+  "githubContributions": 455,
   "items": {
     "https://github.com/EKKOLearnAI/ekko-studio#3867": {
       "stars": 11793,
       "status": "open"
     },
     "https://github.com/Q00/ouroboros#2818": {
-      "stars": 6381,
+      "stars": 6382,
       "status": "merged"
     },
     "https://github.com/affaan-m/ECC#3870": {
-      "stars": 306123,
+      "stars": 306234,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4626": {
-      "stars": 79993,
+      "stars": 80024,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4751": {
-      "stars": 79993,
+      "stars": 80024,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4917": {
-      "stars": 79993,
+      "stars": 80024,
       "status": "open"
     },
     "https://github.com/invoke-ai/InvokeAI#10264": {
@@ -40,19 +40,19 @@
       "status": "open"
     },
     "https://github.com/opensandbox-group/OpenSandbox#2559": {
-      "stars": 17545,
+      "stars": 17561,
       "status": "merged"
     },
     "https://github.com/paperclipai/paperclip#18580": {
-      "stars": 114717,
+      "stars": 114743,
       "status": "open"
     },
     "https://github.com/paperclipai/paperclip#18589": {
-      "stars": 114717,
+      "stars": 114743,
       "status": "open"
     },
     "https://github.com/paperclipai/paperclip#19420": {
-      "stars": 114717,
+      "stars": 114743,
       "status": "open"
     },
     "https://github.com/searchwork/nwt-reading#255": {
@@ -60,11 +60,11 @@
       "status": "open"
     },
     "https://github.com/usestrix/strix#1648": {
-      "stars": 76434,
+      "stars": 76453,
       "status": "open"
     },
     "https://github.com/wshobson/agents#823": {
-      "stars": 42650,
+      "stars": 42653,
       "status": "merged"
     }
   }
