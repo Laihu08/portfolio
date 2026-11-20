@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-20T20:02:54+00:00",
+  "updatedAt": "2026-11-20T20:30:29+00:00",
   "total": 18,
-  "githubContributions": 499,
+  "githubContributions": 500,
   "items": {
     "https://github.com/EKKOLearnAI/ekko-studio#3867": {
       "stars": 11808,
@@ -16,7 +16,7 @@
       "status": "merged"
     },
     "https://github.com/affaan-m/ECC#3870": {
-      "stars": 307758,
+      "stars": 307769,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4626": {
@@ -44,23 +44,23 @@
       "status": "open"
     },
     "https://github.com/opensandbox-group/OpenSandbox#2559": {
-      "stars": 17727,
+      "stars": 17728,
       "status": "merged"
     },
     "https://github.com/paperclipai/paperclip#18580": {
-      "stars": 115442,
+      "stars": 115449,
       "status": "open"
     },
     "https://github.com/paperclipai/paperclip#18589": {
-      "stars": 115442,
+      "stars": 115449,
       "status": "open"
     },
     "https://github.com/paperclipai/paperclip#19420": {
-      "stars": 115442,
+      "stars": 115449,
       "status": "open"
     },
     "https://github.com/roboflow/supervision#3033": {
-      "stars": 51676,
+      "stars": 51677,
       "status": "open"
     },
     "https://github.com/searchwork/nwt-reading#255": {
@@ -68,11 +68,11 @@
       "status": "open"
     },
     "https://github.com/usestrix/strix#1648": {
-      "stars": 76799,
+      "stars": 76801,
       "status": "open"
     },
     "https://github.com/wshobson/agents#823": {
-      "stars": 42735,
+      "stars": 42736,
       "status": "merged"
     }
   }
