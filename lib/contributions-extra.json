@@ -546,5 +546,59 @@
         }
       ]
     }
+  },
+  {
+    "repo": "Ekko Studio",
+    "repoUrl": "https://github.com/EKKOLearnAI/ekko-studio",
+    "stars": 11794,
+    "logo": "https://raw.githubusercontent.com/EKKOLearnAI/ekko-studio/main/packages/client/public/logo-original.png",
+    "banner": "https://raw.githubusercontent.com/EKKOLearnAI/ekko-studio/main/docs/screenshots/overview/new-chat.png",
+    "bannerAlt": "Ekko Studio's official new chat screenshot",
+    "pr": 3878,
+    "label": "Restore secure image requests",
+    "diagramTitle": "Prepare secure connections before image requests",
+    "flow": [
+      "Start the\nbridge",
+      "Set up secure\nconnections",
+      "Load image\nservices"
+    ],
+    "footNote": "Initialize trust before dependent libraries load",
+    "title": "Prevent a connection error in Bedrock image requests",
+    "summary": "I moved secure connection setup earlier so Bedrock image requests avoid a connection error caused by loading supporting libraries first.",
+    "cvLine": "Initialized platform TLS trust before Hermes agent imports to prevent botocore SSL recursion in Bedrock image requests; validated with 1,223 passing tests and an offline real-library probe",
+    "skills": [
+      "Python",
+      "TypeScript",
+      "TLS",
+      "Regression testing"
+    ],
+    "story": {
+      "title": "Prepare secure connections before loading image services",
+      "lead": "Bedrock image requests could fail when supporting libraries loaded before the bridge set up its trusted connections.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "A supporting library could keep an old secure connection class. Updating that class afterward caused repeated calls to itself when Bedrock tried to create a connection."
+        },
+        {
+          "heading": "My fix",
+          "text": "I moved the trust setup to immediately after bridge startup and before agent modules load. Older runtimes without the setup function still work."
+        },
+        {
+          "heading": "The outcome",
+          "text": "The full test suite passed 1,223 tests. An offline probe reproduced the recursion before the fix and created certificate-checking connections afterward. A live Bedrock request was not tested."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #3878",
+          "url": "https://github.com/EKKOLearnAI/ekko-studio/pull/3878"
+        },
+        {
+          "label": "Related issue #3316",
+          "url": "https://github.com/EKKOLearnAI/ekko-studio/issues/3316"
+        }
+      ]
+    }
   }
 ]
