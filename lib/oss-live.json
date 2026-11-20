@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-20T10:32:18+00:00",
-  "total": 17,
-  "githubContributions": 494,
+  "updatedAt": "2026-11-20T10:32:40+00:00",
+  "total": 18,
+  "githubContributions": 495,
   "items": {
     "https://github.com/EKKOLearnAI/ekko-studio#3867": {
       "stars": 11805,
@@ -57,6 +57,10 @@
     },
     "https://github.com/paperclipai/paperclip#19420": {
       "stars": 115336,
+      "status": "open"
+    },
+    "https://github.com/roboflow/supervision#3033": {
+      "stars": 51676,
       "status": "open"
     },
     "https://github.com/searchwork/nwt-reading#255": {

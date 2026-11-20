@@ -600,5 +600,59 @@
         }
       ]
     }
+  },
+  {
+    "repo": "Supervision",
+    "repoUrl": "https://github.com/roboflow/supervision",
+    "stars": 51676,
+    "logo": "https://raw.githubusercontent.com/roboflow/supervision/develop/docs/assets/roboflow_logomark_color.svg",
+    "banner": "https://raw.githubusercontent.com/roboflow/supervision/develop/docs/assets/supervision-lenny.png",
+    "bannerAlt": "Supervision project image from its documentation",
+    "pr": 3033,
+    "label": "Keep annotations visible on transparent images",
+    "diagramTitle": "Draw visible shapes on transparent images",
+    "flow": [
+      "Open a transparent\nimage",
+      "Draw shapes\nwith full color",
+      "Keep the shapes\nvisible"
+    ],
+    "footNote": "Transparent pixels stay transparent where nothing was drawn",
+    "title": "Made image annotations visible on transparent images",
+    "summary": "I fixed drawing tools that made boxes and labels disappear on transparent images.",
+    "cvLine": "Corrected OpenCV color handling for four-channel images so annotations retain visible alpha; validated with 7,559 fallback tests, 8,218 OpenCV tests and passing pre-commit hooks",
+    "skills": [
+      "Python",
+      "OpenCV",
+      "Image processing",
+      "pytest"
+    ],
+    "story": {
+      "title": "Keep drawn labels visible on transparent images",
+      "lead": "Supervision adds boxes, labels and other annotations to images. On transparent images, some of those marks disappeared.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "Drawing tools supplied three color values to images with four channels. The drawing library filled the missing transparency value with zero, making the marks invisible."
+        },
+        {
+          "heading": "My fix",
+          "text": "I made the shared drawing helper provide an opaque transparency value for four-channel images and used it across the affected drawing tools and annotators. Opacity settings still scale that value."
+        },
+        {
+          "heading": "The outcome",
+          "text": "Regression tests show the new marks are visible on transparent images and fail on the old code. The full suite passed with 7,559 tests on the fallback renderer and 8,218 with OpenCV; pre-commit hooks passed."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #3033",
+          "url": "https://github.com/roboflow/supervision/pull/3033"
+        },
+        {
+          "label": "Related issue #3030",
+          "url": "https://github.com/roboflow/supervision/issues/3030"
+        }
+      ]
+    }
   }
 ]
