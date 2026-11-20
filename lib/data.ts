@@ -615,7 +615,7 @@ export const HERO_STATS = [
     label: 'GitHub contributions',
     href: 'https://github.com/Laihu08',
     sub: [
-      { value: CONTRIBUTIONS.length, label: 'Pull requests' },
+      { value: CONTRIBUTIONS.length, label: 'Pull requests', short: 'PR' },
       { value: CONTRIBUTIONS.filter((c) => c.status === 'merged').length, label: 'Merged' },
     ],
   },

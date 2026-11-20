@@ -37,7 +37,7 @@ export function Hero() {
                   rel="noopener noreferrer"
                   className="underline decoration-dotted underline-offset-4 group-hover:text-[var(--ink)] after:absolute after:inset-0"
                 >
-                  {stat.label} ↗
+                  {stat.label}<span className="hidden sm:inline"> ↗</span>
                 </a>
               ) : (
                 stat.label
@@ -55,7 +55,15 @@ export function Hero() {
                       {s.value}
                     </span>
                     <span className="block text-xs text-[var(--mute)] underline decoration-dotted underline-offset-4 group-hover/sub:text-[var(--ink)]">
-                      {s.label} ↓
+                      {'short' in s && s.short ? (
+                        <>
+                          <span className="sm:hidden">{s.short}</span>
+                          <span className="hidden sm:inline">{s.label}</span>
+                        </>
+                      ) : (
+                        s.label
+                      )}
+                      <span className="hidden sm:inline"> ↓</span>
                     </span>
                   </a>
                 ))}
