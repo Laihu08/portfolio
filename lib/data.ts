@@ -117,6 +117,9 @@ export interface ExperienceEntry {
   logo?: string
   education?: boolean
   bonus?: boolean // dateless extra stop, shown as "Bonus"
+  stats?: { value: number; label: string; href: string }[] // clickable number tiles
+  short?: string[] // compact bullets shown on mobile instead of `bullets`
+  shortTitle?: string // compact title shown on mobile
 }
 
 export const EXPERIENCE: ExperienceEntry[] = [
@@ -137,6 +140,15 @@ export const EXPERIENCE: ExperienceEntry[] = [
       'Brought open-source agent frameworks into enterprise infrastructure and defined reusable patterns.',
       'Added evaluation, monitoring and guardrails for reliable, responsible AI.',
     ],
+    short: [
+      'Multi-agent system, built to production on GCP',
+      'LLM, VLM & multimodal agents in industrial workflows',
+      'AI services on Vertex AI + REST APIs',
+      'Docker, Kubernetes & MLOps CI/CD',
+      'Multi-GPU scaling & performance tuning',
+      'Open-source agent frameworks in enterprise',
+      'Evaluation, monitoring & guardrails',
+    ],
   },
   {
     title: 'Senior Software Engineer',
@@ -152,6 +164,13 @@ export const EXPERIENCE: ExperienceEntry[] = [
       'Automated actuator and sensor testing: manual QA time down 90%, remote testability up 75%.',
       'Diagnosed issues across software, hardware and system layers.',
       'Worked with European teams on CE/FDA compliance.',
+    ],
+    short: [
+      'AI posture detection & pressure alerts',
+      'Cross-platform apps for medical hardware',
+      'Test automation: QA time −90%, remote testability +75%',
+      'Debugging across software & hardware',
+      'CE/FDA compliance with European teams',
     ],
   },
   {
@@ -452,30 +471,17 @@ export const CONTRIBUTIONS: ContributionEntry[] = [
 function kStars(n: number) {
   return n >= 1000 ? `${Math.floor(n / 1000)}k+` : `${n}`
 }
-function ossBullets(): string[] {
-  const byRepo = new Map<string, ContributionEntry[]>()
-  for (const c of CONTRIBUTIONS) byRepo.set(c.repoUrl, [...(byRepo.get(c.repoUrl) ?? []), c])
+function ossStats(): NonNullable<ExperienceEntry['stats']> {
   const merged = CONTRIBUTIONS.filter((c) => c.status === 'merged').length
-  const big = [...byRepo.values()].filter((cs) => cs[0].stars >= 1000)
-  const stars = big.reduce((sum, cs) => sum + cs[0].stars, 0)
-  const lines = [
-    `Contribute production fixes to open-source AI agent, LLM and developer-tooling projects with ${kStars(stars)} combined GitHub stars: ${CONTRIBUTIONS.length} pull requests across ${byRepo.size} projects, ${merged} merged.`,
+  const github = (ossLive as { githubContributions: number }).githubContributions
+  return [
+    { value: CONTRIBUTIONS.length, label: 'Pull requests', href: '#open-source' },
+    { value: merged, label: 'Merged', href: '#open-source' },
+    { value: github, label: 'GitHub contributions', href: '#open-source' },
   ]
-  for (const cs of [...byRepo.values()].sort((a, b) => b[0].stars - a[0].stars)) {
-    const status = (c: ContributionEntry) => (c.status === 'merged' ? 'merged' : 'in review')
-    const parts = cs.map((c, i) => {
-      const t = (c.cvLine ?? c.title).replace(/\.$/, '')
-      return `${i ? t[0].toLowerCase() + t.slice(1) : t} (PR #${c.pr}, ${status(c)})`
-    })
-    lines.push(`${cs[0].repo} (${kStars(cs[0].stars)} ★): ${parts.join('; ')}.`)
-  }
-  lines.push(
-    "Work through each project's full contribution process: issue triage, maintainer communication, automated tests, lint and type checks, and CI.",
-    'Building a real-time audio translator for macOS and Windows with Whisper.cpp.',
-  )
-  return lines
 }
-EXPERIENCE.find((e) => e.title === 'Open Source Contributor')!.bullets = ossBullets()
+const OSS_ENTRY = EXPERIENCE.find((e) => e.title === 'Open Source Contributor')!
+OSS_ENTRY.stats = ossStats()
 
 export interface ProjectEntry {
   title: string
@@ -557,9 +563,11 @@ export const TIMELINE: ExperienceEntry[] = [
     end: 'Sep 2021',
     education: true,
     bullets: ['Thesis: self-supervised depth completion for 3D object detection.'],
+    short: ['Thesis: depth completion for 3D detection'],
   },
   {
     title: 'B.Tech Electronics and Instrumentation Engineering',
+    shortTitle: 'B.Tech Electronics & Instrumentation',
     company: 'SRM Institute of Science and Technology',
     url: 'https://www.srmist.edu.in/',
     logo: '/logos/srm.png',
@@ -601,7 +609,16 @@ export const ABOUT_TAGS = ['Logical', 'Honest', 'Persistent', 'Techie', 'Friends
 export const HERO_STATS = [
   { value: 5, suffix: '+', label: 'Years of experience' },
   { value: 2, suffix: '', label: 'International patents', icon: 'patent' as const },
-  { value: (ossLive as { githubContributions: number }).githubContributions, suffix: '', label: 'GitHub contributions', href: 'https://github.com/Laihu08' },
+  {
+    value: (ossLive as { githubContributions: number }).githubContributions,
+    suffix: '',
+    label: 'GitHub contributions',
+    href: 'https://github.com/Laihu08',
+    sub: [
+      { value: CONTRIBUTIONS.length, label: 'Pull requests' },
+      { value: CONTRIBUTIONS.filter((c) => c.status === 'merged').length, label: 'Merged' },
+    ],
+  },
 ]
 
 

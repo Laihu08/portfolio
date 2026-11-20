@@ -21,15 +21,15 @@ export function Hero() {
 
       <dl className="mt-16 flex items-stretch justify-center divide-x divide-[var(--line)] border-y border-[var(--line)]">
         {HERO_STATS.map((stat) => (
-          <div key={stat.label} className={`relative px-8 py-5 text-center sm:px-14${'href' in stat ? ' group' : ''}`}>
+          <div key={stat.label} className={`relative flex flex-col justify-center px-3 py-5 text-center sm:px-12${'href' in stat ? ' group' : ''}`}>
             <dd
-              className="flex items-center justify-center gap-3 text-4xl font-semibold tabular-nums sm:text-5xl"
+              className="flex items-center justify-center gap-2 text-3xl font-semibold tabular-nums sm:gap-3 sm:text-5xl"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               <CountUp value={stat.value} suffix={stat.suffix} />
-              {'icon' in stat && stat.icon === 'patent' && <PatentIcon className="h-9 w-9 sm:h-11 sm:w-11" />}
+              {'icon' in stat && stat.icon === 'patent' && <PatentIcon className="h-7 w-7 sm:h-11 sm:w-11" />}
             </dd>
-            <dt className="mt-1 text-sm text-[var(--mute)]">
+            <dt className="mt-1 text-xs text-[var(--mute)] sm:text-sm">
               {'href' in stat && stat.href ? (
                 <a
                   href={stat.href}
@@ -43,6 +43,24 @@ export function Hero() {
                 stat.label
               )}
             </dt>
+            {'sub' in stat && stat.sub && (
+              <div className="mt-3 flex items-start justify-center divide-x divide-[var(--line)] border-t border-[var(--line)] pt-3">
+                {stat.sub.map((s) => (
+                  <a
+                    key={s.label}
+                    href="#open-source"
+                    className="relative z-10 px-2 text-center group/sub sm:px-4"
+                  >
+                    <span className="block text-xl font-semibold tabular-nums sm:text-2xl" style={{ fontFamily: 'var(--font-display)' }}>
+                      {s.value}
+                    </span>
+                    <span className="block text-xs text-[var(--mute)] underline decoration-dotted underline-offset-4 group-hover/sub:text-[var(--ink)]">
+                      {s.label} ↓
+                    </span>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </dl>

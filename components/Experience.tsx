@@ -154,7 +154,14 @@ export function Experience() {
                     className="font-[var(--font-heading)] text-3xl md:text-4xl leading-tight mb-3 transition-colors duration-500"
                     style={{ color: isReached ? "var(--ink)" : "var(--mute)" }}
                   >
-                    {entry.title}
+                    {entry.shortTitle ? (
+                      <>
+                        <span className="md:hidden">{entry.shortTitle}</span>
+                        <span className="hidden md:inline">{entry.title}</span>
+                      </>
+                    ) : (
+                      entry.title
+                    )}
                   </h3>
                   {entry.company !== entry.location && (
                     <p className="text-base text-[var(--mute)] mb-8 flex flex-wrap items-center gap-x-1.5">
@@ -183,8 +190,36 @@ export function Experience() {
                       )}
                     </p>
                   )}
+                  {entry.stats && (
+                    <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                      {entry.stats.map((stat) => (
+                        <a
+                          key={stat.label}
+                          href={stat.href}
+                          className="group block rounded-xl border border-[var(--line)] px-6 py-5 text-center transition-colors duration-300 hover:border-[var(--mute)] hover:bg-[var(--soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)]"
+                        >
+                          <span className="block font-[var(--font-heading)] text-4xl leading-none text-[var(--ink)]">
+                            {stat.value}
+                          </span>
+                          <span className="mt-3 block font-mono text-sm text-[var(--mute)] group-hover:text-[var(--ink)]">
+                            {stat.label} ↓
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                  {entry.short && entry.short.length > 0 && (
+                    <ul className="md:hidden text-base text-[var(--ink-2)] leading-snug space-y-3">
+                      {entry.short.map((line) => (
+                        <li key={line} className="flex gap-3">
+                          <span className="text-[var(--faint)]">—</span>
+                          <span>{line}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   {entry.bullets.length > 0 && (
-                    <ul className="text-lg text-[var(--ink-2)] leading-[1.75] space-y-5 lg:block lg:space-y-0 lg:columns-2 lg:gap-x-20">
+                    <ul className={`${entry.short ? "hidden md:block " : ""}text-lg text-[var(--ink-2)] leading-[1.75] space-y-5 lg:block lg:space-y-0 lg:columns-2 lg:gap-x-20`}>
                       {entry.bullets.map((bullet) => (
                         <li key={bullet} className="flex gap-4 lg:mb-6 lg:break-inside-avoid">
                           <span className="text-[var(--faint)]">—</span>
