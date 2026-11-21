@@ -654,5 +654,60 @@
         }
       ]
     }
+  },
+  {
+    "repo": "DeepTutor",
+    "repoUrl": "https://github.com/HKUDS/DeepTutor",
+    "stars": 61340,
+    "logo": "https://raw.githubusercontent.com/HKUDS/DeepTutor/main/web/public/logo.png",
+    "banner": "https://raw.githubusercontent.com/HKUDS/DeepTutor/main/web/public/banner.png",
+    "bannerAlt": "DeepTutor's official repository banner",
+    "pr": 2857,
+    "label": "Allow proxy network ranges for public tools",
+    "diagramTitle": "Accept public tool servers behind Fake-IP proxies",
+    "flow": [
+      "Resolve tool\nhostname",
+      "Check declared\nproxy range",
+      "Allow verified\npublic server"
+    ],
+    "footNote": "Public servers pass validation while internal addresses stay blocked",
+    "title": "Allowed public tool servers to connect through local proxies",
+    "summary": "I added an option to DeepTutor's tool validator so public MCP servers are not blocked when local DNS proxies return synthetic network addresses.",
+    "cvLine": "Added configurable Fake-IP proxy range support to DeepTutor's strict MCP server URL validator, preventing false SSRF rejections for public tools behind local proxies while maintaining loopback and metadata guards; validated with 10 new regression tests (192 passing across the suite)",
+    "skills": [
+      "Python",
+      "Networking & DNS",
+      "SSRF Security",
+      "pytest",
+      "Ruff"
+    ],
+    "story": {
+      "title": "Let public tool servers connect when using local proxies",
+      "lead": "DeepTutor checks addresses for tool servers to make sure they are on the public internet. Local proxies on macOS can make public servers look like private ones.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "When running with a local proxy in Fake-IP mode (such as Loon or Clash), DNS requests for public tool services return synthetic private addresses. DeepTutor's strict security check saw these private addresses and rejected public tool servers like GitMCP as forbidden private-network targets."
+        },
+        {
+          "heading": "My fix",
+          "text": "I introduced an opt-in environment setting that lets operators declare trusted proxy network ranges. When a hostname resolves within those ranges, the validator allows it as public, while IP-literal addresses, loopback routes, and cloud metadata targets remain strictly blocked."
+        },
+        {
+          "heading": "The outcome",
+          "text": "I added 10 unit tests covering IPv4 and IPv6 proxy ranges, IP literals, mixed DNS responses, and blocked metadata addresses. All 192 tests in the MCP test suite passed, and Ruff linting and formatting checks completed with zero errors."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #2857",
+          "url": "https://github.com/HKUDS/DeepTutor/pull/2857"
+        },
+        {
+          "label": "Related issue #2789",
+          "url": "https://github.com/HKUDS/DeepTutor/issues/2789"
+        }
+      ]
+    }
   }
 ]
