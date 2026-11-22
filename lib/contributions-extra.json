@@ -709,5 +709,60 @@
         }
       ]
     }
+  },
+  {
+    "repo": "Kornia",
+    "repoUrl": "https://github.com/kornia/kornia",
+    "stars": 12406,
+    "logo": "https://raw.githubusercontent.com/kornia/kornia/main/docs/source/_static/img/kornia_logo.svg",
+    "banner": "https://raw.githubusercontent.com/kornia/data/main/kornia_banner_pixie.png",
+    "bannerAlt": "Kornia's official banner showing differentiable computer vision",
+    "pr": 6903,
+    "label": "Enforce 3D coordinates for plane geometry",
+    "diagramTitle": "Validate 3D coordinates for plane math",
+    "flow": [
+      "Receive\npoint",
+      "Verify 3\ncoordinates",
+      "Calculate\ndistance"
+    ],
+    "footNote": "Validate inputs before math",
+    "title": "Enforced 3D coordinate checks in plane geometry operations",
+    "summary": "I fixed Kornia's 3D hyperplane methods to verify points have three coordinates, preventing single numbers from broadcasting into invalid 3D coordinates.",
+    "cvLine": "Added 3D coordinate shape validation to hyperplane geometry methods to prevent invalid broadcasting; validated across 220 unit tests and 2,309 compile and ONNX conformance tests",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "Geometry",
+      "Computer vision",
+      "pytest"
+    ],
+    "story": {
+      "title": "Enforce 3D coordinate validation in plane geometry",
+      "lead": "In Kornia's geometry module, 3D plane distance calculations accepted single-coordinate tensors and broadcast them into 3D points instead of rejecting them.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "When calculating distances or projections against a 3D hyperplane, passing a single-coordinate tensor broadcast against the 3D normal vector, returning distance calculations for an unintended point rather than raising a shape error."
+        },
+        {
+          "heading": "My fix",
+          "text": "I added shape validation in the signed distance method to ensure tensor points end in exactly three coordinates before performing vector math, which automatically protects distance and projection operations."
+        },
+        {
+          "heading": "The outcome",
+          "text": "The fix was verified with 220 passing plane geometry tests, including a new regression test covering 24 invalid-shape cases, along with 764 compile conformance tests and 1,545 ONNX conformance tests."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #6903",
+          "url": "https://github.com/kornia/kornia/pull/6903"
+        },
+        {
+          "label": "Related issue #6902",
+          "url": "https://github.com/kornia/kornia/issues/6902"
+        }
+      ]
+    }
   }
 ]
