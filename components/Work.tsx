@@ -5,8 +5,12 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { CONTRIBUTIONS, PROJECTS, type ContributionEntry, type ProjectEntry } from '@/lib/data'
 import { Reveal } from './Reveal'
+import { SectionMascot } from './SectionMascot'
 
-const SORTED_CONTRIBUTIONS = [...CONTRIBUTIONS].sort((a, b) => b.stars - a.stars)
+// Merged PRs first, then open ones; within each group, most-starred repo first.
+const SORTED_CONTRIBUTIONS = [...CONTRIBUTIONS].sort(
+  (a, b) => Number(b.status === 'merged') - Number(a.status === 'merged') || b.stars - a.stars,
+)
 
 const formatStars = (stars: number) =>
   stars >= 1000 ? `${(stars / 1000).toFixed(1).replace(/\.0$/, '')}k` : String(stars)
@@ -85,6 +89,8 @@ function useCarousel(count: number) {
   }
 }
 
+const MASCOT: Record<string, 'open-source' | 'projects'> = { 'open-source': 'open-source', work: 'projects' }
+
 function Carousel({
   id,
   title,
@@ -104,7 +110,10 @@ function Carousel({
       <Reveal className="reveal-mask">
         <div className="oss-head">
           <div className="section-heading">
-            <span>{title}</span>
+            <span>
+              {title}
+              {MASCOT[id] && <SectionMascot slug={MASCOT[id]} />}
+            </span>
           </div>
           <div className="oss-controls" aria-label={`${title} carousel controls`}>
             <span className="oss-count" aria-live="polite">

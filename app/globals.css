@@ -578,6 +578,7 @@ html.theme-fade *::after {
   .oss-art { min-height: 260px; padding: 42px 18px 22px; }
   .oss-art-label { top: 10px; left: 18px; right: 18px; }
   .oss-diagram { padding: 18px; }
+  .oss-diagram-top { flex-direction: column; align-items: flex-start; gap: 10px; }
   .oss-details > summary {
     display: flex;
     min-height: 48px;

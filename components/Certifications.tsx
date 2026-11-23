@@ -3,6 +3,7 @@ import { asset } from '@/lib/asset'
 import { siGooglecloud, siNvidia } from 'simple-icons'
 import { CERTIFICATIONS, type CertificationEntry } from '@/lib/data'
 import { Reveal } from './Reveal'
+import { SectionMascot } from './SectionMascot'
 
 function Logo({ logo, issuer }: Pick<CertificationEntry, 'logo' | 'issuer'>) {
   if (logo === 'microsoft') {
@@ -47,7 +48,10 @@ export function Certifications() {
     <section id="certifications" className="section">
       <Reveal className="reveal-mask mb-14">
         <div className="section-heading">
-          <span>Certifications</span>
+          <span>
+            Certifications
+            <SectionMascot slug="certifications" />
+          </span>
         </div>
       </Reveal>
 

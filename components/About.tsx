@@ -1,12 +1,16 @@
 import { ABOUT_LINES, ABOUT_TAGS } from '@/lib/data'
 import { Reveal } from './Reveal'
+import { SectionMascot } from './SectionMascot'
 
 export function About() {
   return (
     <section id="about" className="section">
       <Reveal className="reveal-mask mb-14">
         <div className="section-heading">
-          <span>About Me</span>
+          <span>
+            About Me
+            <SectionMascot slug="about" />
+          </span>
         </div>
       </Reveal>
 

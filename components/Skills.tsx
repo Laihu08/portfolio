@@ -1,6 +1,7 @@
 import { SKILL_GROUPS, type SkillFamily } from '@/lib/data'
 import { TECH_ICONS, type TechIcon } from '@/lib/techIcons'
 import { Reveal } from './Reveal'
+import { SectionMascot } from './SectionMascot'
 
 // Category header glyphs (line style, drawn on a 24 grid).
 const CATEGORY_ICONS: Record<SkillFamily, string[]> = {
@@ -67,7 +68,10 @@ export function Skills() {
     <section id="skills" className="section">
       <Reveal className="reveal-mask mb-14">
         <div className="section-heading">
-          <span>Technologies</span>
+          <span>
+            Technologies
+            <SectionMascot slug="technology" />
+          </span>
         </div>
       </Reveal>
 

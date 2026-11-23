@@ -111,8 +111,8 @@
     "repo": "Paperclip",
     "repoUrl": "https://github.com/paperclipai/paperclip",
     "stars": 111535,
-    "logo": "https://raw.githubusercontent.com/paperclipai/paperclip/master/docs/images/logo-dark.svg",
-    "banner": "https://github.com/paperclipai.png",
+    "logo": "https://raw.githubusercontent.com/paperclipai/paperclip/master/docs/images/logo-light.svg",
+    "banner": "https://raw.githubusercontent.com/paperclipai/paperclip/master/doc/assets/banner.jpg",
     "bannerAlt": "Paperclip's official avatar",
     "pr": 19420,
     "label": "Wait for provider reset before retrying",
@@ -160,7 +160,8 @@
           "url": "https://github.com/paperclipai/paperclip/issues/18550"
         }
       ]
-    }
+    },
+    "logoWordmark": true
   },
   {
     "repo": "OpenLIT",

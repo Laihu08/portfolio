@@ -120,6 +120,7 @@ export interface ExperienceEntry {
   stats?: { value: number; label: string; href: string }[] // clickable number tiles
   short?: string[] // compact bullets shown on mobile instead of `bullets`
   shortTitle?: string // compact title shown on mobile
+  publication?: { title: string; url: string } // linked paper shown under the entry
 }
 
 export const EXPERIENCE: ExperienceEntry[] = [
@@ -466,11 +467,19 @@ export const CONTRIBUTIONS: ContributionEntry[] = [
   .map((c) => ({ ...c, ...LIVE[`${c.repoUrl}#${c.pr}`] }))
   .filter((c) => c.status !== 'closed')
 
-// Open Source Contributor bullets, generated from the contribution cards and their live
-// stars/status, so every routine update (new PR, merge, stars) also updates the Experience section.
-function kStars(n: number) {
-  return n >= 1000 ? `${Math.floor(n / 1000)}k+` : `${n}`
+// Keep every card of the same repo on one logo and banner: the first card listed for a
+// repo sets them, so auto-added contributions can't pick a different variant.
+{
+  const look = new Map<string, Pick<ContributionEntry, 'logo' | 'logoWordmark' | 'banner' | 'bannerAlt'>>()
+  for (const c of CONTRIBUTIONS) {
+    const first = look.get(c.repoUrl)
+    if (first) Object.assign(c, first)
+    else look.set(c.repoUrl, { logo: c.logo, logoWordmark: c.logoWordmark, banner: c.banner, bannerAlt: c.bannerAlt })
+  }
 }
+
+// Open Source Contributor stat tiles, generated from the contribution cards and live data,
+// so every routine update (new PR, merge) also updates the Experience section.
 function ossStats(): NonNullable<ExperienceEntry['stats']> {
   const merged = CONTRIBUTIONS.filter((c) => c.status === 'merged').length
   const github = (ossLive as { githubContributions: number }).githubContributions
@@ -576,6 +585,10 @@ export const TIMELINE: ExperienceEntry[] = [
     end: 'May 2019',
     education: true,
     bullets: [],
+    publication: {
+      title: 'A hybrid feature extraction approach for the detection of melanoma using neural network',
+      url: 'https://www.researchgate.net/publication/334540517_A_hybrid_feature_extraction_approach_for_the_detection_of_melanoma_using_neural_network',
+    },
   },
 ]
 

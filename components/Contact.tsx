@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { PROFILE } from '@/lib/data'
 import { Reveal } from './Reveal'
 import { SocialLinks } from './SocialLinks'
+import { SectionMascot } from './SectionMascot'
 
 export function Contact() {
   const [copied, setCopied] = useState(false)
@@ -22,8 +23,10 @@ export function Contact() {
     <section id="contact" className="section">
       <Reveal className="reveal-mask mb-10">
         <div className="section-heading">
-          <span>Let&apos;s Talk</span>
-          
+          <span>
+            Let&apos;s Talk
+            <SectionMascot slug="contact" />
+          </span>
         </div>
       </Reveal>
 

@@ -5,6 +5,7 @@ import Image from "next/image"
 import { asset } from '@/lib/asset';
 import { TIMELINE } from "@/lib/data";
 import { Reveal } from "./Reveal";
+import { SectionMascot } from "./SectionMascot";
 
 // Scroll-linked timeline: a hairline fills as you read, a glowing head leads it,
 // each stop lights up when the head reaches it and its title brightens.
@@ -85,7 +86,10 @@ export function Experience() {
     <section id="experience" className="section">
       <Reveal className="reveal-mask mb-14">
         <div className="section-heading">
-          <span>Experience &amp; Education</span>
+          <span>
+            Experience &amp; Education
+            <SectionMascot slug="experience" />
+          </span>
         </div>
       </Reveal>
 
@@ -188,6 +192,22 @@ export function Experience() {
                       ) : (
                         entry.company
                       )}
+                    </p>
+                  )}
+                  {entry.publication && (
+                    <p className="mb-6 flex gap-4 text-base md:text-lg leading-snug text-[var(--ink-2)]">
+                      <span className="text-[var(--faint)]">—</span>
+                      <span>
+                        <span className="text-[var(--mute)]">Publication: </span>
+                        <a
+                          href={entry.publication.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline decoration-dotted underline-offset-4 transition-colors duration-300 hover:text-[var(--ink)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)]"
+                        >
+                          {entry.publication.title} ↗
+                        </a>
+                      </span>
                     </p>
                   )}
                   {entry.stats && (

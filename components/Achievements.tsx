@@ -3,6 +3,7 @@ import { asset } from '@/lib/asset'
 import { ACHIEVEMENTS, type AchievementEntry } from '@/lib/data'
 import { Reveal } from './Reveal'
 import { PatentIcon } from './PatentIcon'
+import { SectionMascot } from './SectionMascot'
 
 function Logo({ logo, title }: Pick<AchievementEntry, 'logo' | 'title'>) {
   if (logo === 'patent') return <PatentIcon />
@@ -17,7 +18,10 @@ export function Achievements() {
     <section id="achievements" className="section">
       <Reveal className="reveal-mask mb-14">
         <div className="section-heading">
-          <span>Achievements</span>
+          <span>
+            Achievements
+            <SectionMascot slug="achievements" />
+          </span>
         </div>
       </Reveal>
 

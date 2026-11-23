@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { PROFILE } from '@/lib/data'
+import { SplashCharacter } from './SplashCharacter'
 
 const SEEN_KEY = 'splash-seen'
 
@@ -10,6 +11,7 @@ const SEEN_KEY = 'splash-seen'
 // same session.
 export function Splash() {
   const [phase, setPhase] = useState<'open' | 'closing' | 'gone'>('open')
+  const nameRef = useRef<HTMLHeadingElement>(null)
 
   useEffect(() => {
     let seen = false
@@ -50,12 +52,16 @@ export function Splash() {
         transition: 'transform 0.9s cubic-bezier(0.76, 0, 0.24, 1)',
       }}
     >
+      <div className="relative">
       <h1
+        ref={nameRef}
         className="splash-sign font-semibold leading-[1.05] tracking-tight text-[var(--ink)]"
         style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px, 9vw, 120px)' }}
       >
         {PROFILE.name}
       </h1>
+      <SplashCharacter nameRef={nameRef} />
+      </div>
       <p
         className="mt-8 text-xl font-normal text-[var(--mute)] splash-fade md:text-2xl"
         style={{ animationDelay: '1s' }}
