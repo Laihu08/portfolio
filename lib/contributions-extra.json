@@ -819,5 +819,60 @@
         }
       ]
     }
+  },
+  {
+    "repo": "RunAnywhere SDKs",
+    "repoUrl": "https://github.com/RunanywhereAI/runanywhere-sdks",
+    "stars": 10356,
+    "logo": "https://raw.githubusercontent.com/RunanywhereAI/runanywhere-sdks/main/docs/logo.svg",
+    "banner": "https://raw.githubusercontent.com/RunanywhereAI/runanywhere-sdks/main/docs/img/architecture.png",
+    "bannerAlt": "RunAnywhere SDKs official architecture diagram",
+    "pr": 1347,
+    "label": "Queue background unloads before reloading models",
+    "diagramTitle": "Serialize model unloads and loads",
+    "flow": [
+      "Track in-flight\nunload",
+      "Wait for previous\ncleanup",
+      "Load new model\nsafely"
+    ],
+    "footNote": "Serialize unloads to avoid race conditions",
+    "title": "Serialized previous-owner model unloads against new loads in the Web SDK",
+    "summary": "I fixed a race condition in the RunAnywhere Web SDK where background model unloads could delete a freshly reloaded model on the same WASM worker.",
+    "cvLine": "Serialized asynchronous previous-owner model unloads against subsequent loads on WASM workers to prevent race conditions during model switches; validated with 33 unit tests including two new regression tests",
+    "skills": [
+      "TypeScript",
+      "WebAssembly",
+      "Web Workers",
+      "Vitest",
+      "Concurrency"
+    ],
+    "story": {
+      "title": "Serialize model unloads before reloading on WASM workers",
+      "lead": "In the RunAnywhere Web SDK, unloading a model ran in the background without blocking, allowing a subsequent reload on the same worker to clash with the pending cleanup.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "When switching models across WASM modules or Web Workers, the SDK unloaded the previous owner asynchronously in the background. If a model was loaded back onto that same worker before the unload completed, the concurrent operations could interleave and cause the background cleanup to destroy the newly loaded model."
+        },
+        {
+          "heading": "My fix",
+          "text": "I implemented per-owner tracking for in-flight unloads using a WeakMap for WASM modules and an ID map for backend workers. Asynchronous load paths and successive unloads now wait for any pending release on that owner to settle before proceeding, while ensuring failed unloads never reject the new load."
+        },
+        {
+          "heading": "The outcome",
+          "text": "Verified with 33 unit tests in the cross-WASM model lifecycle suite, including two new tests covering suspended unloads and failing cleanup. Without the fix, the concurrent reload regression test reliably fails."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #1347",
+          "url": "https://github.com/RunanywhereAI/runanywhere-sdks/pull/1347"
+        },
+        {
+          "label": "Related issue #1240",
+          "url": "https://github.com/RunanywhereAI/runanywhere-sdks/issues/1240"
+        }
+      ]
+    }
   }
 ]
