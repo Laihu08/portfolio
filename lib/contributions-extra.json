@@ -765,5 +765,59 @@
         }
       ]
     }
+  },
+  {
+    "repo": "OpenMontage",
+    "repoUrl": "https://github.com/OpenMontageInc/OpenMontage",
+    "stars": 82598,
+    "logo": "https://raw.githubusercontent.com/OpenMontageInc/OpenMontage/main/assets/monty-light.svg",
+    "banner": "https://raw.githubusercontent.com/OpenMontageInc/OpenMontage/main/docs/images/backlot/board-live.png",
+    "bannerAlt": "OpenMontage live production board showing generating assets",
+    "pr": 979,
+    "label": "Stop API key echoing and chat credential requests",
+    "diagramTitle": "Verify API key presence without echoing secrets",
+    "flow": [
+      "Check key\npresence",
+      "Verify without\nechoing",
+      "Direct setup\nto env file"
+    ],
+    "footNote": "Keep API keys private",
+    "title": "Stopped secret API key echoing and credential requests in chat",
+    "summary": "I fixed OpenMontage's image generation skill and docs to verify API keys without printing them to output and stopped agents from asking users for secrets in chat.",
+    "cvLine": "Patched image-generation agent skill instructions to prevent secret API key echoing and direct users to configuration files rather than requesting raw credentials in chat; validated with 242 contract and integrity tests",
+    "skills": [
+      "Python",
+      "Security",
+      "Agent skills",
+      "pytest"
+    ],
+    "story": {
+      "title": "Prevent secret key exposure in agent image generation",
+      "lead": "In OpenMontage's BFL FLUX image generation skill, setup instructions echoed secret API keys into terminal output and prompted agents to ask users for credentials in chat.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "The setup instructions for the BFL image generation skill used echo $BFL_API_KEY to check if a key was set, which printed the raw API key to standard output. Additionally, the reference docs directed agents to ask users to paste their secret API keys directly into chat when missing."
+        },
+        {
+          "heading": "My fix",
+          "text": "I replaced the echo commands with safe non-printing presence checks across the skill and reference documentation. I also updated the setup workflow to instruct users to configure their environment file directly instead of sharing secrets in chat, and added an automated contract test to enforce these rules."
+        },
+        {
+          "heading": "The outcome",
+          "text": "I verified the changes by running the contract test suite, where all 242 tests passed, confirming that no skill files echo the secret key or prompt users to paste credentials in chat."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #979",
+          "url": "https://github.com/OpenMontageInc/OpenMontage/pull/979"
+        },
+        {
+          "label": "Related issue #964",
+          "url": "https://github.com/OpenMontageInc/OpenMontage/issues/964"
+        }
+      ]
+    }
   }
 ]
