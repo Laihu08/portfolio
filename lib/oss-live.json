@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T13:31:43+00:00",
+  "updatedAt": "2026-11-24T13:35:10+00:00",
   "total": 22,
-  "githubContributions": 564,
+  "githubContributions": 565,
   "items": {
     "https://github.com/EKKOLearnAI/ekko-studio#3867": {
       "stars": 11812,
@@ -16,7 +16,7 @@
       "status": "open"
     },
     "https://github.com/OpenMontageInc/OpenMontage#979": {
-      "stars": 82959,
+      "stars": 82960,
       "status": "open"
     },
     "https://github.com/Q00/ouroboros#2818": {
@@ -28,7 +28,7 @@
       "status": "open"
     },
     "https://github.com/affaan-m/ECC#3870": {
-      "stars": 309912,
+      "stars": 309916,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4626": {
@@ -84,7 +84,7 @@
       "status": "open"
     },
     "https://github.com/usestrix/strix#1648": {
-      "stars": 77358,
+      "stars": 77359,
       "status": "open"
     },
     "https://github.com/wshobson/agents#823": {
