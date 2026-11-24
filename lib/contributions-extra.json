@@ -874,5 +874,60 @@
         }
       ]
     }
+  },
+  {
+    "repo": "openevolve",
+    "repoUrl": "https://github.com/algorithmicsuperintelligence/openevolve",
+    "stars": 7860,
+    "logo": "https://raw.githubusercontent.com/algorithmicsuperintelligence/openevolve/main/openevolve-logo.png",
+    "banner": "https://raw.githubusercontent.com/algorithmicsuperintelligence/openevolve/main/openevolve-architecture.png",
+    "bannerAlt": "OpenEvolve architecture and evolutionary search pipeline diagram",
+    "pr": 616,
+    "label": "Fix Codex app server connection",
+    "diagramTitle": "Fix Codex CLI server session",
+    "flow": [
+      "Receive CLI\nrequests",
+      "Apply sandbox\nand auth checks",
+      "Stream responses\nwithout looping"
+    ],
+    "footNote": "Codex app server fixed",
+    "title": "Fixed hanging connections and auth errors in Codex app server",
+    "summary": "I fixed three issues in the Codex app server integration that caused requests to hang, fail sandbox checks, or misidentify authenticated ChatGPT accounts.",
+    "cvLine": "Resolved hanging Codex CLI connections by updating sandbox parameter formats, fixing subscription auth validation, and preventing message-queue notification loops across 1,142 unit tests",
+    "skills": [
+      "Python",
+      "AsyncIO",
+      "LLM Integration",
+      "Unit Testing",
+      "Codex CLI"
+    ],
+    "story": {
+      "title": "Fix Codex app server connection and notification loop",
+      "lead": "OpenEvolve's Codex app server integration failed or hung when running with recent Codex CLI releases due to parameter schema mismatches and a busy notification loop.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "When invoking Codex CLI 0.170, thread creation failed because sandbox settings were rejected as an object instead of a string. Additionally, valid ChatGPT accounts were incorrectly rejected for missing API keys, and arriving notifications before LLM responses caused an endless message queue spin."
+        },
+        {
+          "heading": "My fix",
+          "text": "I updated thread initialization to pass sandbox mode as a string with network settings in sandboxPolicy, refactored authentication checks to evaluate account types directly, and fixed the message queue handler to leave parked notifications untouched while waiting for response messages."
+        },
+        {
+          "heading": "The outcome",
+          "text": "Verified the changes across all 1,142 unit tests. Added test coverage for ChatGPT account generation, sandbox parameter assertions, and notification queuing before responses without hanging."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #616",
+          "url": "https://github.com/algorithmicsuperintelligence/openevolve/pull/616"
+        },
+        {
+          "label": "Related issue #613",
+          "url": "https://github.com/algorithmicsuperintelligence/openevolve/issues/613"
+        }
+      ]
+    }
   }
 ]
