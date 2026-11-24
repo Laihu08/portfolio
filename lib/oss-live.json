@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T20:03:38+00:00",
+  "updatedAt": "2026-11-24T20:30:33+00:00",
   "total": 22,
-  "githubContributions": 570,
+  "githubContributions": 571,
   "items": {
     "https://github.com/EKKOLearnAI/ekko-studio#3867": {
       "stars": 11814,
@@ -12,15 +12,15 @@
       "status": "merged"
     },
     "https://github.com/HKUDS/DeepTutor#2857": {
-      "stars": 62278,
+      "stars": 62279,
       "status": "open"
     },
     "https://github.com/OpenMontageInc/OpenMontage#979": {
-      "stars": 83039,
+      "stars": 83046,
       "status": "open"
     },
     "https://github.com/Q00/ouroboros#2818": {
-      "stars": 6387,
+      "stars": 6386,
       "status": "merged"
     },
     "https://github.com/RunanywhereAI/runanywhere-sdks#1347": {
@@ -28,19 +28,19 @@
       "status": "open"
     },
     "https://github.com/affaan-m/ECC#3870": {
-      "stars": 310115,
+      "stars": 310120,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4626": {
-      "stars": 80761,
+      "stars": 80763,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4751": {
-      "stars": 80761,
+      "stars": 80763,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4917": {
-      "stars": 80761,
+      "stars": 80763,
       "status": "merged"
     },
     "https://github.com/invoke-ai/InvokeAI#10264": {
@@ -64,15 +64,15 @@
       "status": "merged"
     },
     "https://github.com/paperclipai/paperclip#18580": {
-      "stars": 116679,
+      "stars": 116685,
       "status": "open"
     },
     "https://github.com/paperclipai/paperclip#18589": {
-      "stars": 116679,
+      "stars": 116685,
       "status": "open"
     },
     "https://github.com/paperclipai/paperclip#19420": {
-      "stars": 116679,
+      "stars": 116685,
       "status": "open"
     },
     "https://github.com/roboflow/supervision#3033": {
@@ -84,11 +84,11 @@
       "status": "open"
     },
     "https://github.com/usestrix/strix#1648": {
-      "stars": 77410,
+      "stars": 77411,
       "status": "open"
     },
     "https://github.com/wshobson/agents#823": {
-      "stars": 42864,
+      "stars": 42865,
       "status": "merged"
     }
   }
