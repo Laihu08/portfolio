@@ -929,5 +929,59 @@
         }
       ]
     }
+  },
+  {
+    "repo": "InvokeAI",
+    "repoUrl": "https://github.com/invoke-ai/InvokeAI",
+    "stars": 29161,
+    "logo": "https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/docs/src/assets/v7-logo.webp",
+    "banner": "https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/docs/src/content/docs/assets/splash-banner.png",
+    "bannerAlt": "InvokeAI official documentation banner",
+    "pr": 10392,
+    "label": "Free memory during image generation",
+    "diagramTitle": "Leave unused model weights behind",
+    "flow": [
+      "Load the\nencoder",
+      "Skip unused\nweights",
+      "Use less\nmemory"
+    ],
+    "footNote": "The output layer is not needed for image prompts",
+    "title": "Stopped loading unused image encoder weights",
+    "summary": "I changed the image encoder loaders to skip an unused output layer, reducing the memory needed to load the model.",
+    "cvLine": "Removed unused output layer loading across Qwen Image encoder paths and adjusted adapter conversion; validated with 243 passing targeted tests",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "Model loading",
+      "pytest"
+    ],
+    "story": {
+      "title": "Load the image encoder without unused weights",
+      "lead": "The image encoder loaded an output layer that image prompts never use.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "Several loading paths kept an unused output layer in memory, even though image prompts never read it."
+        },
+        {
+          "heading": "My fix",
+          "text": "I changed the loading paths to leave those weights unread and updated adapter conversion to skip layers aimed at the removed output."
+        },
+        {
+          "heading": "The outcome",
+          "text": "The targeted test run had 243 passing tests and 4 skips. File headers indicate a memory saving of about 1.09 GB for the starter encoder; runtime memory was not measured."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #10392",
+          "url": "https://github.com/invoke-ai/InvokeAI/pull/10392"
+        },
+        {
+          "label": "Related issue #9985",
+          "url": "https://github.com/invoke-ai/InvokeAI/issues/9985"
+        }
+      ]
+    }
   }
 ]
