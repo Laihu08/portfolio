@@ -1,22 +1,22 @@
 {
-  "updatedAt": "2026-11-26T01:31:27+00:00",
+  "updatedAt": "2026-11-26T03:01:50+00:00",
   "total": 23,
-  "githubContributions": 613,
+  "githubContributions": 616,
   "items": {
     "https://github.com/EKKOLearnAI/ekko-studio#3867": {
-      "stars": 11822,
+      "stars": 11823,
       "status": "merged"
     },
     "https://github.com/EKKOLearnAI/ekko-studio#3878": {
-      "stars": 11822,
+      "stars": 11823,
       "status": "merged"
     },
     "https://github.com/HKUDS/DeepTutor#2857": {
-      "stars": 62792,
+      "stars": 62820,
       "status": "open"
     },
     "https://github.com/OpenMontageInc/OpenMontage#979": {
-      "stars": 83350,
+      "stars": 83368,
       "status": "open"
     },
     "https://github.com/Q00/ouroboros#2818": {
@@ -28,7 +28,7 @@
       "status": "open"
     },
     "https://github.com/affaan-m/ECC#3870": {
-      "stars": 310751,
+      "stars": 310778,
       "status": "merged"
     },
     "https://github.com/algorithmicsuperintelligence/openevolve#616": {
@@ -36,15 +36,15 @@
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4626": {
-      "stars": 80868,
+      "stars": 80869,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4751": {
-      "stars": 80868,
+      "stars": 80869,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4917": {
-      "stars": 80868,
+      "stars": 80869,
       "status": "merged"
     },
     "https://github.com/invoke-ai/InvokeAI#10264": {
@@ -57,7 +57,7 @@
     },
     "https://github.com/invoke-ai/InvokeAI#10392": {
       "stars": 29161,
-      "status": "open"
+      "status": "merged"
     },
     "https://github.com/kornia/kornia#6903": {
       "stars": 12409,
@@ -68,19 +68,19 @@
       "status": "open"
     },
     "https://github.com/opensandbox-group/OpenSandbox#2559": {
-      "stars": 17927,
+      "stars": 17930,
       "status": "merged"
     },
     "https://github.com/paperclipai/paperclip#18580": {
-      "stars": 117058,
+      "stars": 117082,
       "status": "closed"
     },
     "https://github.com/paperclipai/paperclip#18589": {
-      "stars": 117058,
+      "stars": 117082,
       "status": "open"
     },
     "https://github.com/paperclipai/paperclip#19420": {
-      "stars": 117058,
+      "stars": 117082,
       "status": "open"
     },
     "https://github.com/roboflow/supervision#3033": {
@@ -92,11 +92,11 @@
       "status": "open"
     },
     "https://github.com/usestrix/strix#1648": {
-      "stars": 77607,
+      "stars": 77623,
       "status": "open"
     },
     "https://github.com/wshobson/agents#823": {
-      "stars": 42895,
+      "stars": 42898,
       "status": "merged"
     }
   }
