@@ -983,5 +983,59 @@
         }
       ]
     }
+  },
+  {
+    "repo": "Headroom",
+    "repoUrl": "https://github.com/headroomlabs-ai/headroom",
+    "stars": 80946,
+    "logo": "https://raw.githubusercontent.com/headroomlabs-ai/headroom/main/docs/public/assets/headroom-logomark.svg",
+    "banner": "https://raw.githubusercontent.com/headroomlabs-ai/headroom/main/.github/assets/hero.svg",
+    "bannerAlt": "Headroom’s official banner showing context compression",
+    "pr": 5070,
+    "label": "Count AI context savings once",
+    "diagramTitle": "Track new savings across a conversation",
+    "flow": [
+      "Compress\ncontext",
+      "Track what\nis new",
+      "Count savings\nonce"
+    ],
+    "footNote": "Accurate totals across turns",
+    "title": "Counted only new AI context savings",
+    "summary": "I fixed Headroom’s savings totals so compressed text is counted once across a conversation instead of again on every turn.",
+    "cvLine": "Corrected Anthropic proxy savings accounting with per-conversation tracking and regression tests; validated with 1,276 passing related tests and a three-turn proxy run",
+    "skills": [
+      "Python",
+      "Proxy services",
+      "Metrics accounting",
+      "Regression testing"
+    ],
+    "story": {
+      "title": "Keep AI context savings accurate across a conversation",
+      "lead": "Headroom shortens conversation context before sending it to an AI model. Its Anthropic path could count the same saved text again on later turns.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "Each turn reported the total compression for that conversation, but the running metrics added that total as if it were new savings."
+        },
+        {
+          "heading": "My fix",
+          "text": "I linked each conversation to its previous savings total and made the running metrics add only the increase. Per-request numbers still show the actual change for that request."
+        },
+        {
+          "heading": "The outcome",
+          "text": "In a three-turn proxy run, the repeated savings were counted once: the metric recorded 10,380 saved tokens instead of 31,140. The focused tests passed, along with 1,276 related tests; the full suite was left for CI."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #5070",
+          "url": "https://github.com/headroomlabs-ai/headroom/pull/5070"
+        },
+        {
+          "label": "Related issue #5069",
+          "url": "https://github.com/headroomlabs-ai/headroom/issues/5069"
+        }
+      ]
+    }
   }
 ]
