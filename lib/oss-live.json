@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-27T20:30:35+00:00",
+  "updatedAt": "2026-11-27T20:31:40+00:00",
   "total": 24,
-  "githubContributions": 633,
+  "githubContributions": 634,
   "items": {
     "https://github.com/EKKOLearnAI/ekko-studio#3867": {
       "stars": 11833,
@@ -28,7 +28,7 @@
       "status": "open"
     },
     "https://github.com/affaan-m/ECC#3870": {
-      "stars": 311761,
+      "stars": 311762,
       "status": "merged"
     },
     "https://github.com/algorithmicsuperintelligence/openevolve#616": {
@@ -36,19 +36,19 @@
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4626": {
-      "stars": 80997,
+      "stars": 80998,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4751": {
-      "stars": 80997,
+      "stars": 80998,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#4917": {
-      "stars": 80997,
+      "stars": 80998,
       "status": "merged"
     },
     "https://github.com/headroomlabs-ai/headroom#5070": {
-      "stars": 80997,
+      "stars": 80998,
       "status": "open"
     },
     "https://github.com/invoke-ai/InvokeAI#10264": {
@@ -96,7 +96,7 @@
       "status": "open"
     },
     "https://github.com/usestrix/strix#1648": {
-      "stars": 77985,
+      "stars": 77986,
       "status": "open"
     },
     "https://github.com/wshobson/agents#823": {
