@@ -1037,5 +1037,59 @@
         }
       ]
     }
+  },
+  {
+    "repo": "InvokeAI",
+    "repoUrl": "https://github.com/invoke-ai/InvokeAI",
+    "stars": 29174,
+    "logo": "https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/docs/src/assets/v7-logo.webp",
+    "banner": "https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/docs/src/content/docs/assets/splash-banner.png",
+    "bannerAlt": "InvokeAI official documentation banner",
+    "pr": 10406,
+    "label": "Load Wan video model files correctly",
+    "diagramTitle": "Recognize the original Wan file layout",
+    "flow": [
+      "Read the\nfile layout",
+      "Identify the\nWan model",
+      "Convert and\nload it"
+    ],
+    "footNote": "Works with Wan 2.1 and 2.2 files",
+    "title": "Fixed Wan video model file recognition",
+    "summary": "I fixed how InvokeAI recognizes and loads Wan video model files packaged for ComfyUI.",
+    "cvLine": "Corrected Wan VAE identification and converted original Wan 2.1 and 2.2 model layouts for loading; validated with 3,901 passing tests and real model round trips",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "Model loading",
+      "pytest"
+    ],
+    "story": {
+      "title": "Load Wan video model files in InvokeAI",
+      "lead": "Wan video model files packaged for ComfyUI were identified as a different model type, and Wan 2.2 files then failed to load.",
+      "steps": [
+        {
+          "heading": "The problem",
+          "text": "InvokeAI checked the wrong location for the Wan model’s channel count in files using the original layout. It treated these files as Anima models; the 48-channel Wan 2.2 file failed to load."
+        },
+        {
+          "heading": "My fix",
+          "text": "I added a check for the original Wan layout, kept Anima recognition to its supported files, and converted Wan 2.1 and 2.2 file keys into the layout expected by the loader."
+        },
+        {
+          "heading": "The outcome",
+          "text": "The model manager and identification test run passed 3,901 tests, with 190 skipped. Real Wan 2.1 and 2.2 files were recognized as Wan models and loaded for CPU encode and decode checks."
+        }
+      ],
+      "links": [
+        {
+          "label": "Read PR #10406",
+          "url": "https://github.com/invoke-ai/InvokeAI/pull/10406"
+        },
+        {
+          "label": "Related issue #10403",
+          "url": "https://github.com/invoke-ai/InvokeAI/issues/10403"
+        }
+      ]
+    }
   }
 ]
